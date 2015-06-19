@@ -20,26 +20,34 @@
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
 </head>
-<body>
+<body class="with-nav">
 <!--[if lt IE 10]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div class="container">
-    <div class="header">
-        <ul class="nav nav-pills pull-right">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">beerlocker react</h3>
+<nav class="navbar-inverse navbar-default navbar-static-top">
+
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand react" href="#">beerlocker react</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
     </div>
+</nav>
+
+<div class="container">
     <div id="content"></div>
     <div class="footer">
         <p>♥ from the Yeoman team</p>
     </div>
 </div>
-
 
 
 <!-- build:js scripts/vendor.js -->
@@ -74,20 +82,20 @@
 
     // tutorial9.js
     var CommentBox = React.createClass({
-        loadCommentsFromServer: function() {
+        loadCommentsFromServer: function () {
             $.ajax({
                 url: this.props.url,
                 dataType: 'json',
                 cache: false,
-                success: function(data) {
+                success: function (data) {
                     this.setState({data: data});
                 }.bind(this),
-                error: function(xhr, status, err) {
+                error: function (xhr, status, err) {
                     console.error(this.props.url, status, err.toString());
                 }.bind(this)
             });
         },
-        handleCommentSubmit: function(comment) {
+        handleCommentSubmit: function (comment) {
             var comments = this.state.data;
             var newComments = comments.concat([comment]);
             this.setState({data: newComments});
@@ -96,27 +104,27 @@
                 dataType: 'json',
                 type: 'POST',
                 data: comment,
-                success: function(data) {
+                success: function (data) {
                     this.setState({data: data});
                 }.bind(this),
-                error: function(xhr, status, err) {
+                error: function (xhr, status, err) {
                     console.error(this.props.url, status, err.toString());
                 }.bind(this)
             });
         },
-        getInitialState: function() {
+        getInitialState: function () {
             return {data: []};
         },
-        componentDidMount: function() {
+        componentDidMount: function () {
             this.loadCommentsFromServer();
             setInterval(this.loadCommentsFromServer, this.props.pollInterval);
         },
-        render: function() {
+        render: function () {
             return (
                 <div className="commentBox">
                     <h1>Comments</h1>
-                    <CommentList data={this.state.data} />
-                    <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+                    <CommentList data={this.state.data}/>
+                    <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
                 </div>
             );
         }
@@ -124,7 +132,7 @@
 
     // tutorial5.js
     var CommentList = React.createClass({
-        render: function() {
+        render: function () {
             var commentNodes = this.props.data.map(function (comment) {
                 return (
                     <Comment author={comment.author}>
@@ -142,7 +150,7 @@
 
     // tutorial16.js
     var CommentForm = React.createClass({
-        handleSubmit: function(e) {
+        handleSubmit: function (e) {
             e.preventDefault();
             var author = React.findDOMNode(this.refs.author).value.trim();
             var text = React.findDOMNode(this.refs.text).value.trim();
@@ -155,12 +163,12 @@
             return;
         },
 
-        render: function() {
+        render: function () {
             return (
                 <form className="commentForm" onSubmit={this.handleSubmit}>
-                    <input ref="author" className="form-control" type="text" placeholder="Your name" />
-                    <input ref="text" className="form-control" type="text" placeholder="Say something..." />
-                    <input className="btn btn-success pull-right" type="submit" value="Post" />
+                    <input ref="author" className="form-control" type="text" placeholder="Your name"/>
+                    <input ref="text" className="form-control" type="text" placeholder="Say something..."/>
+                    <input className="btn btn-success pull-right" type="submit" value="Post"/>
                 </form>
             );
         }
@@ -168,14 +176,14 @@
 
     // tutorial7.js
     var Comment = React.createClass({
-        render: function() {
+        render: function () {
             var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
             return (
                 <div className="comment">
                     <h2 className="commentAuthor">
                         {this.props.author}
                     </h2>
-                    <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
+                    <span dangerouslySetInnerHTML={{__html: rawMarkup}}/>
                 </div>
             );
         }
@@ -188,7 +196,7 @@
     ];
 
     React.render(
-        <CommentBox url="comments.json" pollInterval={2000} />,
+        <CommentBox url="comments.json" pollInterval={2000}/>,
         document.getElementById('content')
     );
 </script>
