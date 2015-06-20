@@ -17,13 +17,23 @@
         var should = chai.should();
     </script>
 
+    <!-- bower:js -->
+    <script src="../app/bower_components/jquery/dist/jquery.js"></script>
+    <!--<script src="../app/bower_components/react/react.js"></script>-->
+    <script src="../app/bower_components/marked/lib/marked.js"></script>
+    <script src="../app/bower_components/angular/angular.js"></script>
+    <!-- endbower -->
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+
     <!-- include source files here... -->
+    <script src="../app/scripts/ng/controllers.js"></script>
 
     <!-- include spec files here... -->
-    <script src="spec/test.js"></script>
+    <script src="spec/sample_test.js"></script>
+    <script src="spec/angular_test.js"></script>
 
     <script>
-    if (window.mochaPhantomJS) { mochaPhantomJS.run(); } 
+    if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
     else { mocha.run(); }
     </script>
 </body>

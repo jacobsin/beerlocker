@@ -117,6 +117,13 @@ gulp.task('wiredep', function () {
             exclude: ['bootstrap-sass-official']
         }))
         .pipe(gulp.dest('app'));
+
+    //gulp.src('test/*.html')
+    //    .pipe(wiredep({
+    //        directory: 'app/bower_components',
+    //        exclude: ['bootstrap-sass-official']
+    //    }))
+    //    .pipe(gulp.dest('test'));
 });
 
 gulp.task('watch', ['connect', 'serve'], function () {
