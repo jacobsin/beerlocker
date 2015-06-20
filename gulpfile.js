@@ -140,7 +140,6 @@ gulp.task('watch', ['connect', 'serve'], function () {
 });
 
 gulp.task('mocha-phantomjs', function () {
-    var chai = require('chai');
     gulp.src('test/**/*.html', {read: false})
         .pipe(mochaPhantomJS({reporter: 'spec'}))
         .on('error', gutil.log);
