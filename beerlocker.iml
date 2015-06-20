@@ -8,6 +8,7 @@
       <excludeFolder url="file://$MODULE_DIR$/node_modules" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Node.js v0.10.28 Core Modules" level="application" />
+    <orderEntry type="library" name="Node.js v0.12.4 Core Modules" level="application" />
+    <orderEntry type="library" name="Node.js v0.10.38 Core Modules" level="application" />
   </component>
 </module>
