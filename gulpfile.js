@@ -6,6 +6,7 @@ var mocha = require('gulp-mocha');
 var gutil = require('gulp-util');
 var sass = require('gulp-sass');
 var coffee = require('gulp-coffee');
+var sourcemaps = require('gulp-sourcemaps');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
 
 
@@ -14,8 +15,10 @@ var $ = require('gulp-load-plugins')();
 
 gulp.task('styles', function () {
     return gulp.src('app/styles/main.scss')
+        .pipe($.sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe($.autoprefixer('last 1 version'))
+        .pipe($.sourcemaps.write('./maps'))
         .pipe(gulp.dest('.tmp/styles'))
         .pipe($.size());
 });
@@ -29,7 +32,9 @@ gulp.task('scripts', function () {
 
 gulp.task('coffee', function () {
     return gulp.src('app/scripts/**/*.coffee')
+        .pipe(sourcemaps.init())
         .pipe(coffee({bare: true}).on('error', gutil.log))
+        .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('.tmp/scripts'))
         .pipe($.size());
 });
