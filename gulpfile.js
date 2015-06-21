@@ -5,6 +5,7 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var gutil = require('gulp-util');
 var sass = require('gulp-sass');
+var coffee = require('gulp-coffee');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
 
 
@@ -23,6 +24,13 @@ gulp.task('scripts', function () {
     return gulp.src('app/scripts/**/*.js')
         .pipe($.jshint())
         .pipe($.jshint.reporter(require('jshint-stylish')))
+        .pipe($.size());
+});
+
+gulp.task('coffee', function () {
+    return gulp.src('app/scripts/**/*.coffee')
+        .pipe(coffee({bare: true}).on('error', gutil.log))
+        .pipe(gulp.dest('.tmp/scripts'))
         .pipe($.size());
 });
 
@@ -134,6 +142,7 @@ gulp.task('watch', ['connect', 'serve'], function () {
     gulp.watch([
         'app/*.html',
         '.tmp/styles/**/*.css',
+        'app/scripts/**/*.coffee',
         'app/scripts/**/*.js',
         'app/images/**/*'
     ]).on('change', function (file) {
@@ -141,6 +150,7 @@ gulp.task('watch', ['connect', 'serve'], function () {
     });
 
     gulp.watch('app/styles/**/*.scss', ['styles']);
+    gulp.watch('app/scripts/**/*.coffee', ['coffee']);
     gulp.watch('app/scripts/**/*.js', ['scripts']);
     gulp.watch('app/images/**/*', ['images']);
     gulp.watch('bower.json', ['wiredep']);

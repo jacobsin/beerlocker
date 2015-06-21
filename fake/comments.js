@@ -1,6 +1,6 @@
 function routes(interfake) {
 
-    interfake.get(/\/comments.json.*/).body([
+    interfake.get(/^\/comments.json.*$/).body([
         {"author": "Pete Hunt", "text": "This is one comment"},
         {"author": "Jordan Walke", "text": "This is *another* comment"}
     ]);
@@ -9,7 +9,7 @@ function routes(interfake) {
         {"author": "Pete Hunt", "text": "This is one comment"},
         {"author": "Jordan Walke", "text": "This is *another* comment"},
         {"author": "moo", "text": "moo"}
-    ]).extends.get(/\/comments.json.*/).body([
+    ]).extends.get(/^\/comments.json.*$/).body([
         {"author": "moo", "text": "moo"}
     ]);
 }
