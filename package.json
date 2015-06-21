@@ -1,6 +1,12 @@
 {
   "name": "beerlocker",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "An example to illustrate what js can do for webapp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacobsin/beerlocker"
+  },
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.2.0",
     "express": "^4.2.0",
@@ -21,6 +27,7 @@
     "gulp-flatten": "^0.0.2",
     "gulp-imagemin": "^0.5.0",
     "gulp-jshint": "^1.5.3",
+    "gulp-less": "^3.0.3",
     "gulp-livereload": "^1.2.0",
     "gulp-load-plugins": "^0.5.0",
     "gulp-mocha": "^0.4.1",
