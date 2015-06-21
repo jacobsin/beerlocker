@@ -1,5 +1,5 @@
 var Interfake = require('interfake');
-var interfake = new Interfake({debug:false, path:'api'});
+var interfake = new Interfake({debug:true, path:'api'});
 var port = 9001;
 
 require('./comments')(interfake);

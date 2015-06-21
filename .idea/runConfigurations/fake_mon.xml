@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="fake mon" type="NodeJSConfigurationType" factoryName="Node.js" singleton="true" path-to-node="/usr/local/bin/nodemon" path-to-js-file="fake/fake.js" node-parameters="--watch fake" working-dir="$PROJECT_DIR$">
+    <method />
+  </configuration>
+</component>

@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="server nodemon" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="/usr/local/bin/nodemon" path-to-js-file="server.js" working-dir="$PROJECT_DIR$">
-    <RunnerSettings RunnerId="NodeJS.run" />
-    <ConfigurationWrapper RunnerId="NodeJS.run" />
-    <method />
-  </configuration>
-</component>

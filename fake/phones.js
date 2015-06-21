@@ -1,6 +1,6 @@
 function routes(interfake) {
 
-    interfake.get(/^\/phones\/phones.json.*$/).body([
+    interfake.get(/\/phones\/phones.json.*/).body([
         {
             "age": 0,
             "id": "motorola-xoom-with-wi-fi",
