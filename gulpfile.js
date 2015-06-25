@@ -13,6 +13,18 @@ var mochaPhantomJS = require('gulp-mocha-phantomjs');
 
 // load plugins
 var $ = require('gulp-load-plugins')();
+var port = 9000;
+var watching = false;
+function handleError(err) {
+    var displayErr = gutil.colors.red(err);
+    if (watching) {
+        gutil.log(displayErr);
+        gutil.beep();
+        this.emit('end');
+    } else {
+        throw displayErr;
+    }
+}
 
 gulp.task('styles', function () {
     return gulp.src('app/styles/main.scss')
@@ -27,7 +39,7 @@ gulp.task('styles', function () {
 gulp.task('styles-less', function () {
     return gulp.src('app/styles/main.less')
         .pipe($.sourcemaps.init())
-        .pipe(less({ paths: ['.'] }).on('error', gutil.log))
+        .pipe(less({ paths: ['.'] }).on('error', handleError))
         .pipe($.autoprefixer('last 1 version'))
         .pipe($.sourcemaps.write('./maps'))
         .pipe(gulp.dest('.tmp/styles'))
@@ -44,13 +56,13 @@ gulp.task('scripts', function () {
 gulp.task('coffee', function () {
     return gulp.src('app/scripts/**/*.coffee')
         .pipe(sourcemaps.init())
-        .pipe(coffee({bare: true}).on('error', gutil.log))
+        .pipe(coffee({bare: true}).on('error', handleError))
         .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('.tmp/scripts'))
         .pipe($.size());
 });
 
-gulp.task('html', [/*'styles',*/ 'styles-less', 'scripts'], function () {
+gulp.task('html', [/*'styles',*/ 'styles-less', 'coffee', 'scripts'], function () {
     var jsFilter = $.filter('**/*.js');
     var cssFilter = $.filter('**/*.css');
 
@@ -70,11 +82,6 @@ gulp.task('html', [/*'styles',*/ 'styles-less', 'scripts'], function () {
 
 gulp.task('images', function () {
     return gulp.src('app/images/**/*')
-        .pipe($.cache($.imagemin({
-            optimizationLevel: 3,
-            progressive: true,
-            interlaced: true
-        })))
         .pipe(gulp.dest('dist/images'))
         .pipe($.size());
 });
@@ -109,20 +116,43 @@ gulp.task('connect', function () {
 
     var app = connect()
         .use(require('connect-livereload')({ port: 35729 }))
+        //.use(connect.logger('dev'))
         .use(connect.static('app'))
         .use(connect.static('.tmp'))
-        .use(connect.directory('app'))
-        .use('/api', proxy(url.parse('http://localhost:9001/api')));
+        .use('/api', proxy(url.parse('http://localhost:9001/api')))
+        .use(connect.directory('app'));
 
     require('http').createServer(app)
-        .listen(9000)
+        .listen(port)
         .on('listening', function () {
-            console.log('Started connect web server on http://localhost:9000');
+            console.log('Started connect web server on http://localhost:'+port);
         });
 });
 
+gulp.task('connect-dist', function () {
+    port = 9999;
+    var connect = require('connect');
+    var url = require('url');
+    var proxy = require('proxy-middleware');
+
+    var app = connect()
+        .use(connect.static('dist'))
+        .use('/api', proxy(url.parse('http://localhost:9001/api')))
+        .use(connect.directory('dist'));
+
+    require('http').createServer(app)
+        .listen(port)
+        .on('listening', function () {
+            console.log('Started connect web server from dist on http://localhost:'+port);
+        });
+});
+
+gulp.task('serve-dist', ['connect-dist'], function () {
+    require('opn')('http://localhost:'+port);
+});
+
 gulp.task('serve', ['connect'/*, 'styles'*/, 'styles-less'], function () {
-    require('opn')('http://localhost:9000');
+    require('opn')('http://localhost:'+port);
 });
 
 // inject bower components
@@ -160,7 +190,7 @@ gulp.task('watch', ['connect', 'serve'], function () {
     var server = $.livereload();
 
     // watch for changes
-
+    watching = true;
     gulp.watch([
         'app/*.html',
         '.tmp/styles/**/*.css',
@@ -182,9 +212,10 @@ gulp.task('watch', ['connect', 'serve'], function () {
 gulp.task('mocha-phantomjs', function () {
     gulp.src('test/**/*.html', {read: false})
         .pipe(mochaPhantomJS({reporter: 'spec'}))
-        .on('error', gutil.log);
+        .on('error', handleError);
 });
 
 gulp.task('watch-mocha-phantomjs', function () {
-    gulp.watch(['app/scripts/**', '.tmp/scripts/**', 'test/spec/**'], ['mocha-phantomjs']);
+    watching = true;
+    gulp.watch(['app/scripts/**', 'test/spec/**'], ['mocha-phantomjs']);
 });
