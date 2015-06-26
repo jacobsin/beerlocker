@@ -8,6 +8,8 @@ var sass = require('gulp-sass');
 var less = require('gulp-less');
 var coffee = require('gulp-coffee');
 var sourcemaps = require('gulp-sourcemaps');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
 
 
@@ -53,7 +55,7 @@ gulp.task('scripts', function () {
         .pipe($.size());
 });
 
-gulp.task('coffee', function () {
+gulp.task('scripts-coffee', function () {
     return gulp.src('app/scripts/**/*.coffee')
         .pipe(sourcemaps.init())
         .pipe(coffee({bare: true}).on('error', handleError))
@@ -62,7 +64,18 @@ gulp.task('coffee', function () {
         .pipe($.size());
 });
 
-gulp.task('html', [/*'styles',*/ 'styles-less', 'coffee', 'scripts'], function () {
+gulp.task('browserify', function() {
+    return browserify({
+            entries: ['app/scripts/angular-main.coffee'],
+            extensions: ['.coffee']
+        })
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest('.tmp/scripts'))
+        .pipe($.size());
+});
+
+gulp.task('html', [/*'styles',*/ 'styles-less', 'scripts-coffee', 'scripts'], function () {
     var jsFilter = $.filter('**/*.js');
     var cssFilter = $.filter('**/*.css');
 
@@ -203,8 +216,8 @@ gulp.task('watch', ['connect', 'serve'], function () {
 
     //gulp.watch('app/styles/**/*.scss', ['styles']);
     gulp.watch('app/styles/**/*.less', ['styles-less']);
-    gulp.watch('app/scripts/**/*.coffee', ['coffee']);
-    gulp.watch('app/scripts/**/*.js', ['scripts']);
+    gulp.watch('app/scripts/**/*.coffee', ['scripts-coffee', 'browserify']);
+    gulp.watch('app/scripts/**/*.js', ['scripts', 'browserify']);
     gulp.watch('app/images/**/*', ['images']);
     gulp.watch('bower.json', ['wiredep']);
 });

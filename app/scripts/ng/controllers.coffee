@@ -1,4 +1,4 @@
-phonecatApp = angular.module('phonecatApp', [])
+phonecatApp = angular.module 'phonecatApp', []
 
 phonecatApp.controller 'PhoneListCtrl', ['$scope', '$http',
     ($scope, $http) ->
