@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-var handleError = require('../common/handle-error');
+var errorHandler = require('../common/error-handler');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
 
 gulp.task('mocha-phantomjs', function() {
@@ -10,5 +10,5 @@ gulp.task('mocha-phantomjs', function() {
     .pipe(mochaPhantomJS({
       reporter: 'spec'
     }))
-    .on('error', handleError);
+    .on('error', errorHandler.process);
 });

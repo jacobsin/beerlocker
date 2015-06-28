@@ -8,6 +8,7 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
 var requireDir = require('require-dir');
+var errorHandler = require('./gulp/common/error-handler');
 
 requireDir('./gulp/tasks', {
   recurse: true
@@ -16,7 +17,6 @@ requireDir('./gulp/tasks', {
 // load plugins
 var $ = require('gulp-load-plugins')();
 var port = 9000;
-var watching = false;
 
 gulp.task('html', [ /*'styles',*/ 'styles-less', 'scripts-coffee', 'scripts'],
   function() {
@@ -131,7 +131,7 @@ gulp.task('watch', ['connect', 'serve'], function() {
   var server = $.livereload();
 
   // watch for changes
-  watching = true;
+  errorHandler.setWatchingMode();
   gulp.watch([
     'app/*.html',
     '.tmp/styles/**/*.css',
@@ -151,6 +151,6 @@ gulp.task('watch', ['connect', 'serve'], function() {
 });
 
 gulp.task('watch-mocha-phantomjs', function() {
-  watching = true;
+  errorHandler.setWatchingMode();
   gulp.watch(['app/scripts/**', 'test/spec/**'], ['mocha-phantomjs']);
 });
