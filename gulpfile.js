@@ -3,10 +3,7 @@
 
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
-var gutil = require('gulp-util');
 var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
-var source = require('vinyl-source-stream');
 var requireDir = require('require-dir');
 var errorHandler = require('./gulp/common/error-handler');
 
@@ -18,8 +15,7 @@ requireDir('./gulp/tasks', {
 var $ = require('gulp-load-plugins')();
 var port = 9000;
 
-gulp.task('html', [ /*'styles',*/ 'styles-less', 'scripts-coffee', 'scripts'],
-  function() {
+gulp.task('html', [ /*'styles',*/ 'styles-less', 'browserify'], function() {
     var jsFilter = $.filter('**/*.js');
     var cssFilter = $.filter('**/*.css');
 
