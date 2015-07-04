@@ -12,3 +12,8 @@ gulp.task('mocha-phantomjs', function() {
     }))
     .on('error', errorHandler.process);
 });
+
+gulp.task('watch-mocha-phantomjs', function() {
+    errorHandler.setWatchingMode();
+    gulp.watch(['app/scripts/**', 'test/spec/**', 'test/**/*.html'], ['mocha-phantomjs']);
+});

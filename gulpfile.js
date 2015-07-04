@@ -2,8 +2,6 @@
 // generated on 2014-05-13 using generator-gulp-webapp 0.1.0
 
 var gulp = require('gulp');
-var mocha = require('gulp-mocha');
-var sass = require('gulp-sass');
 var requireDir = require('require-dir');
 var errorHandler = require('./gulp/common/error-handler');
 
@@ -130,10 +128,10 @@ gulp.task('watch', ['connect', 'serve'], function() {
   errorHandler.setWatchingMode();
   gulp.watch([
     'app/*.html',
-    '.tmp/styles/**/*.css',
-    '.tmp/scripts/**/*.js',
     'app/scripts/**/*.js',
-    'app/images/**/*'
+    'app/images/**/*',
+    '.tmp/styles/**/*.css',
+    '.tmp/scripts/**/*.js'
   ]).on('change', function(file) {
     server.changed(file.path);
   });
@@ -144,9 +142,4 @@ gulp.task('watch', ['connect', 'serve'], function() {
   gulp.watch('app/scripts/**/*.js', ['scripts', 'browserify']);
   gulp.watch('app/images/**/*', ['images']);
   gulp.watch('bower.json', ['wiredep']);
-});
-
-gulp.task('watch-mocha-phantomjs', function() {
-  errorHandler.setWatchingMode();
-  gulp.watch(['app/scripts/**', 'test/spec/**'], ['mocha-phantomjs']);
 });
