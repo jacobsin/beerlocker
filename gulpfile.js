@@ -26,6 +26,7 @@ gulp.task('watch', ['connect', 'serve'], function() {
   gulp.watch([
     'app/*.html',
     'app/scripts/**/*.js',
+    'app/scripts/**/*.html',
     'app/images/**/*',
     '.tmp/styles/**/*.css',
     '.tmp/scripts/**/*.js'

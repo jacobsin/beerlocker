@@ -1,8 +1,10 @@
 require('./controllers')
+require('./filters')
 
 phonecatApp = angular.module 'phonecatApp', [
     'ngRoute',
-    'phonecatControllers'
+    'phonecatControllers',
+    'phonecatFilters'
 ]
 
 phonecatApp.config ['$routeProvider',
