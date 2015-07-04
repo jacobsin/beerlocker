@@ -1,7 +1,11 @@
 describe 'PhoneCat controllers', ->
 
+    equalData = (expected) ->
+        (actual) -> angular.equals(actual, expected)
+
     # Load our app module definition before each test.
     beforeEach module 'phonecatApp'
+    beforeEach module 'phonecatServices'
 
     describe 'PhoneListCtrl', ->
 
@@ -20,10 +24,10 @@ describe 'PhoneCat controllers', ->
             ctrl = $controller('PhoneListCtrl', {$scope:scope})
 
         it 'should create "phones" model with 2 phones fetched from xhr', ->
-            expect(scope.phones).to.be.undefined
+            expect(scope.phones).to.satisfy(equalData([]))
             $httpBackend.flush()
 
-            expect(scope.phones).to.deep.equal([{name: 'Nexus S'}, {name: 'Motorola DROID'}])
+            expect(scope.phones).to.satisfy(equalData([{name: 'Nexus S'}, {name: 'Motorola DROID'}]))
 
         it 'should set the default value of orderProp model', ->
             expect(scope.orderProp).to.equal('age')
@@ -47,7 +51,7 @@ describe 'PhoneCat controllers', ->
 
 
         it 'should fetch phone detail', ->
-            expect(scope.phone).to.be.undefined
+            expect(scope.phone).to.satisfy(equalData({}))
             $httpBackend.flush()
 
-            expect(scope.phone).to.deep.equal(xyzPhoneData())
+            expect(scope.phone).to.satisfy(equalData(xyzPhoneData()))
