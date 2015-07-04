@@ -12,5 +12,9 @@ phonecatControllers.controller 'PhoneDetailCtrl', ['$scope', '$routeParams', '$h
     ($scope, $routeParams, $http) ->
         $http.get('api/static/phones/' + $routeParams.phoneId + '.json').success((data) ->
             $scope.phone = data
+            $scope.mainImageUrl = data.images[0]
         )
+
+        $scope.setImage = (imageUrl) ->
+            $scope.mainImageUrl = imageUrl
 ]

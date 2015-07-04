@@ -33,10 +33,13 @@ describe 'PhoneCat controllers', ->
         scope = null
         ctrl = null
         $httpBackend = null
+        xyzPhoneData = () ->
+            name: 'phone xyz',
+            images: ['image/url1.png', 'image/url2.png']
 
         beforeEach inject (_$httpBackend_, $rootScope, $routeParams, $controller) ->
             $httpBackend = _$httpBackend_
-            $httpBackend.expectGET('api/static/phones/xyz.json').respond({name:'phone xyz'})
+            $httpBackend.expectGET('api/static/phones/xyz.json').respond(xyzPhoneData())
 
             $routeParams.phoneId = 'xyz'
             scope = $rootScope.$new()
@@ -47,4 +50,4 @@ describe 'PhoneCat controllers', ->
             expect(scope.phone).to.be.undefined
             $httpBackend.flush()
 
-            expect(scope.phone).to.deep.equal({name:'phone xyz'})
+            expect(scope.phone).to.deep.equal(xyzPhoneData())
