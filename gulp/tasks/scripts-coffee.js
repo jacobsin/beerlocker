@@ -13,3 +13,14 @@ gulp.task('scripts-coffee', function() {
     .pipe(gulp.dest('.tmp/scripts'))
     .pipe($.size());
 });
+
+gulp.task('specs-coffee', function() {
+    return gulp.src('test/specs/**/*.coffee')
+        .pipe($.sourcemaps.init())
+        .pipe(coffee({
+            bare: true
+        }).on('error', errorHandler.process))
+        .pipe($.sourcemaps.write('./maps'))
+        .pipe(gulp.dest('.tmp/specs'))
+        .pipe($.size());
+});

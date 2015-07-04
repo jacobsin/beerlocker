@@ -22,6 +22,7 @@ gulp.task('connect', function() {
         //.use(connect.logger('dev'))
         .use(connect.static('app'))
         .use(connect.static('.tmp'))
+        .use('/api/static', proxy(url.parse('http://localhost:9001/static')))
         .use('/api', proxy(url.parse('http://localhost:9001/api')))
         .use(connect.directory('app'));
 

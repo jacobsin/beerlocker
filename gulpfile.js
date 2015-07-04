@@ -36,6 +36,7 @@ gulp.task('watch', ['connect', 'serve'], function() {
   //gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/styles/**/*.less', ['styles-less']);
   gulp.watch('app/scripts/**/*.coffee', ['scripts-coffee', 'browserify']);
+  gulp.watch('test/specs/**/*.coffee', ['specs-coffee']);
   gulp.watch('app/scripts/**/*.js', ['scripts', 'browserify']);
   gulp.watch('app/images/**/*', ['images']);
   gulp.watch('bower.json', ['wiredep']);

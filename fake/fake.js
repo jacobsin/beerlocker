@@ -1,11 +1,17 @@
 var Interfake = require('interfake');
-var interfake = new Interfake({debug:false, path:'api'});
+var requireDir = require('require-dir');
+var _ = require('lodash');
+
+var interfake = new Interfake({debug:true, path:'api'});
+
 var port = 9001;
 
-require('./comments')(interfake);
-require('./phones')(interfake);
 
-//interfake.serveStatic('/', 'app');
+_(requireDir('routes')).values().each(function (routes) {
+    routes(interfake);
+}).value();
+
+interfake.serveStatic('/static', 'static');
 
 interfake.listen(port);
 console.log('Faking on port ' + port);
