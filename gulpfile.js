@@ -18,21 +18,10 @@ gulp.task('default', ['clean'], function() {
   gulp.start('build');
 });
 
-gulp.task('watch', ['connect', 'serve'], function() {
-  var server = $.livereload();
+gulp.task('watch', ['browser-sync'], function() {
 
   // watch for changes
   errorHandler.setWatchingMode();
-  gulp.watch([
-    'app/*.html',
-    'app/scripts/**/*.js',
-    'app/scripts/**/*.html',
-    'app/images/**/*',
-    '.tmp/styles/**/*.css',
-    '.tmp/scripts/**/*.js'
-  ]).on('change', function(file) {
-    server.changed(file.path);
-  });
 
   //gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/styles/**/*.less', ['styles-less']);
