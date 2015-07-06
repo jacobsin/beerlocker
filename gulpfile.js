@@ -12,7 +12,7 @@ requireDir('./gulp/tasks', {
 // load plugins
 var $ = require('gulp-load-plugins')();
 
-gulp.task('build', ['html', 'images', 'fonts', 'extras']);
+gulp.task('build', ['html', 'images', 'fonts', 'partials', 'extras']);
 
 gulp.task('default', ['clean'], function() {
   gulp.start('build');

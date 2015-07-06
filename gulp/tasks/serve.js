@@ -42,6 +42,7 @@ gulp.task('connect-dist', function() {
 
     var app = connect()
         .use(connect.static('dist'))
+        .use('/api/static', proxy(url.parse('http://localhost:9001/static')))
         .use('/api', proxy(url.parse('http://localhost:9001/api')))
         .use(connect.directory('dist'));
 
