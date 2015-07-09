@@ -2,7 +2,7 @@ var gulp = require('gulp');
 
 var port = 9000;
 
-gulp.task('serve', ['connect' /*, 'styles'*/ , 'styles-less'], function() {
+gulp.task('serve', ['connect', 'browserify' , 'styles-less'], function() {
     require('opn')('http://localhost:' + port);
 });
 

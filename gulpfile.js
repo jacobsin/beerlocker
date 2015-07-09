@@ -18,14 +18,13 @@ gulp.task('default', ['clean'], function() {
   gulp.start('build');
 });
 
-gulp.task('watch', ['watchify','connect', 'serve'], function() {
+gulp.task('watch', ['watchify', 'serve'], function() {
   var server = $.livereload();
 
   // watch for changes
   runtime.setWatching();
   gulp.watch([
     'app/*.html',
-    'app/scripts/**/*.js',
     'app/scripts/**/*.html',
     'app/images/**/*',
     '.tmp/styles/**/*.css',
