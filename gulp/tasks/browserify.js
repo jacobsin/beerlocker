@@ -19,8 +19,11 @@ gulp.task('browserify', function(done) {
             var bundleConfig = {
                 entries: [entry],
                 debug: true,
-                transform: ['coffeeify'],
-                extensions: ['.coffee']
+                transform: [
+                    'coffeeify',
+                    ['browserify-ng-html2js', { baseDir: 'app', extension: 'html'}]
+                ],
+                extensions: ['.coffee', '.html']
             };
 
             var outputFile = entry

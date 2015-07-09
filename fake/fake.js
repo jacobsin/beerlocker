@@ -2,7 +2,7 @@ var Interfake = require('interfake');
 var requireDir = require('require-dir');
 var _ = require('lodash');
 
-var interfake = new Interfake({debug:true, path:'api'});
+var interfake = new Interfake({debug:false, path:'api'});
 
 var port = 9001;
 

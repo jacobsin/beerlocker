@@ -13,11 +13,11 @@ phonecatApp.config ['$routeProvider',
     ($routeProvider) ->
         $routeProvider
             .when '/phones', {
-                templateUrl: 'scripts/ng/partials/phone-list.html',
+                templateUrl: require('./partials/phone-list').name,
                 controller: 'PhoneListCtrl'
             }
             .when '/phones/:phoneId', {
-                templateUrl: 'scripts/ng/partials/phone-detail.html',
+                templateUrl: require('./partials/phone-detail').name,
                 controller: 'PhoneDetailCtrl'
             }
             .otherwise {
