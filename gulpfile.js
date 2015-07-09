@@ -18,7 +18,7 @@ gulp.task('default', ['clean'], function() {
   gulp.start('build');
 });
 
-gulp.task('watch', ['connect', 'serve'], function() {
+gulp.task('watch', ['watchify','connect', 'serve'], function() {
   var server = $.livereload();
 
   // watch for changes
@@ -36,9 +36,11 @@ gulp.task('watch', ['connect', 'serve'], function() {
 
   //gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/styles/**/*.less', ['styles-less']);
-  gulp.watch('app/scripts/**/*.coffee', ['scripts-coffee', 'browserify']);
   gulp.watch('test/specs/**/*.coffee', ['specs-coffee']);
-  gulp.watch('app/scripts/**/*.js', ['scripts', 'browserify']);
   gulp.watch('app/images/**/*', ['images']);
   gulp.watch('bower.json', ['wiredep']);
+
+  //Watchify will watch and recompile our JS, so no need to gulp.watch it
+  //gulp.watch('app/scripts/**/*.coffee', ['scripts-coffee', 'browserify']);
+  //gulp.watch('app/scripts/**/*.js', ['scripts', 'browserify']);
 });
