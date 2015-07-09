@@ -16,9 +16,7 @@ gulp.task('connect', function() {
     var proxy = require('proxy-middleware');
 
     var app = connect()
-        .use(require('connect-livereload')({
-            port: 35729
-        }))
+        .use(require('connect-livereload')({ port: 35729 }))
         //.use(connect.logger('dev'))
         .use(connect.static('app'))
         .use(connect.static('.tmp'))
@@ -49,8 +47,6 @@ gulp.task('connect-dist', function() {
     require('http').createServer(app)
         .listen(port)
         .on('listening', function() {
-            console.log(
-                'Started connect web server from dist on http://localhost:' +
-                port);
+            console.log('Started connect web server from dist on http://localhost:' + port);
         });
 });

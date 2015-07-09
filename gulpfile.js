@@ -3,7 +3,7 @@
 
 var gulp = require('gulp');
 var requireDir = require('require-dir');
-var errorHandler = require('./gulp/common/error-handler');
+var runtime = require('./gulp/common/runtime');
 
 requireDir('./gulp/tasks', {
   recurse: true
@@ -22,7 +22,7 @@ gulp.task('watch', ['connect', 'serve'], function() {
   var server = $.livereload();
 
   // watch for changes
-  errorHandler.setWatchingMode();
+  runtime.setWatching();
   gulp.watch([
     'app/*.html',
     'app/scripts/**/*.js',

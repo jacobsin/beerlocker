@@ -16,7 +16,7 @@ gulp.task('browserify', ['scripts', 'scripts-coffee'], function() {
     };
     bundleLogger.start(bundleConfig.outputName);
     return browserify(bundleConfig)
-        .bundle().on('error', errorHandler.process)
+        .bundle().on('error', errorHandler.handle)
         .pipe(source(bundleConfig.outputName))
         .pipe(buffer())
         .pipe($.sourcemaps.init({loadMaps: true}))
