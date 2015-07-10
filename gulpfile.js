@@ -25,10 +25,8 @@ gulp.task('watch', ['watchify', 'serve'], function() {
   runtime.setWatching();
   gulp.watch([
     'app/*.html',
-    'app/scripts/**/*.html',
     'app/images/**/*',
     '.tmp/styles/**/*.css',
-    '.tmp/scripts/**/*.js'
   ]).on('change', function(file) {
     server.changed(file.path);
   });

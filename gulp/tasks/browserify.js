@@ -63,7 +63,9 @@ gulp.task('browserify', function(done) {
             };
 
             if(watching) {
-                b = watchify(b);
+                b = watchify(b, {
+                    //usePolling: true //enabled for window
+                });
                 // Rebundle on update
                 b.on('update', bundle);
                 bundleLogger.watch(outputFile);
