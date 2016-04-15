@@ -9,7 +9,7 @@ var port = 9001;
 
 _(requireDir('routes')).values().each(function (routes) {
     routes(interfake);
-}).value();
+});
 
 interfake.serveStatic('/static', 'static');
 
