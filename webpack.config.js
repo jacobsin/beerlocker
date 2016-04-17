@@ -42,6 +42,7 @@ const getEntry = function (env) {
   entry.plain = ['./app/scripts/plain'];
   entry.angular = ['./app/scripts/angular'];
   entry.slingshot = ['./app/scripts/slingshot'];
+  entry.react = ['./app/scripts/react'];
 
   if (env === developmentEnvironment ) { // only want hot reloading when in dev.
     Object.keys(entry).forEach(function (key) {

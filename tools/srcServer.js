@@ -47,7 +47,7 @@ browserSync({
       webpackHotMiddleware(bundler),
 
       proxy(staticProxyOptions),
-      
+
       proxy(apiProxyOptions),
 
       historyApiFallback()
@@ -58,5 +58,7 @@ browserSync({
   // including full page reloads if HMR won't work
   files: [
     'app/*.html'
-  ]
+  ],
+
+  startPath: "/react.html"
 });
