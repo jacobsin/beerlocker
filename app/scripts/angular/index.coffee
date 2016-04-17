@@ -1,4 +1,4 @@
-require '../../styles/main.less'
+require '../../styles/angular.less'
 require './app'
 
 #console.log '\'Allo \'Allo!'

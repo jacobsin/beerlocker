@@ -1,2 +1,2 @@
-require('../../styles/main.less');
+require('../../styles/plain.less');
 require('./app');
