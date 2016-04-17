@@ -39,8 +39,9 @@ const getPlugins = function (env) {
 const getEntry = function (env) {
   const entry = {};
 
-  entry.plain = ['./app/scripts/plain-main'];
-  entry.angular = ['./app/scripts/angular-main'];
+  entry.plain = ['./app/scripts/plain'];
+  entry.angular = ['./app/scripts/angular'];
+  entry.slingshot = ['./app/scripts/slingshot'];
 
   if (env === developmentEnvironment ) { // only want hot reloading when in dev.
     Object.keys(entry).forEach(function (key) {
@@ -59,9 +60,11 @@ const getLoaders = function (env) {
 
   if (env === productionEnvironment ) {
     // generate separate physical stylesheet for production build using ExtractTextPlugin. This provides separate caching and avoids a flash of unstyled content on load.
-    loaders.push({test: /(\.css|\.scss|\.less)$/, loader: ExtractTextPlugin.extract("css?sourceMap!sass?sourceMap!less?sourceMap")});
+    loaders.push({test: /(\.css|\.scss)$/, loader: ExtractTextPlugin.extract("css?sourceMap!sass?sourceMap")});
+    loaders.push({test: /\.less$/, loader: ExtractTextPlugin.extract("css?sourceMap!less?sourceMap")});
   } else {
-    loaders.push({test: /(\.css|\.scss|\.less)$/, loaders: ['style', 'css?sourceMap', 'sass?sourceMap', 'less?sourceMap']});
+    loaders.push({test: /(\.css|\.scss)$/, loaders: ['style', 'css?sourceMap', 'sass?sourceMap']});
+    loaders.push({test: /\.less$/, loaders: ['style', 'css?sourceMap', 'less?sourceMap']});
   }
 
   return loaders;
