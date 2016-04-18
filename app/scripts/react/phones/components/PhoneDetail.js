@@ -6,19 +6,16 @@ import { getDetail, getMainImageUrl } from '../selectors';
 import { fetchOne, selectImage } from '../actions';
 import { checkmark } from '../helpers/unicode';
 
-const PhoneDetail = React.createClass({
+class PhoneDetail extends React.Component {
 
-  propTypes : {
-    dispatch: PropTypes.func.isRequired,
-    params: PropTypes.object.isRequired,
-    detail: PropTypes.object,
-    mainImageUrl: PropTypes.string
-  },
+  constructor(props) {
+    super(props);
+  }
 
   componentDidMount() {
     const {dispatch, params} = this.props;
     dispatch(fetchOne(params.id));
-  },
+  }
 
   render() {
     const {detail, mainImageUrl, dispatch} = this.props;
@@ -149,7 +146,14 @@ const PhoneDetail = React.createClass({
       );
   }
 
-});
+}
+
+PhoneDetail.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired,
+  detail: PropTypes.object,
+  mainImageUrl: PropTypes.string
+};
 
 export default connect(
   createStructuredSelector({detail: getDetail, mainImageUrl: getMainImageUrl})
