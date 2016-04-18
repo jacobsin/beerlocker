@@ -4,11 +4,24 @@ import fetch from 'isomorphic-fetch';
 
 export const search = (text) => ({
   type: t.SEARCH,
-  payload: { text }
+  text
+});
+
+export const selectImage = (imageUrl) => ({
+  type: t.SELECT_IMAGE,
+  imageUrl
+});
+
+export const fetchOne = (id) => ({
+  type: t.FETCH,
+  payload: {
+    promise: fetch(`api/static/phones/${id}.json`)
+      .then(response => response.json())
+  }
 });
 
 export const fetchAll = () => ({
-  type: t.FETCH,
+  type: t.FETCH_ALL,
   payload: {
     promise: fetch('api/static/phones/phones.json')
       .then(response => response.json())

@@ -2,7 +2,7 @@
 //This boilerplate file is likely to be the same for each project that uses Redux.
 //With Redux, the actual stores are in /reducers.
 
-import {createStore, applyMiddleware, compose} from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import rootReducer from '../rootReducer';
 

@@ -1,10 +1,10 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
 const PhoneItem = ({phone}) => {
   return (
     <li className="thumbnail">
       <a href={`#/phones/${phone.id}`} className="thumb">
-        <img src={phone.imageUrl} />
+        <img src={phone.imageUrl}/>
       </a>
       <a href={`#/phones/${phone.id}`}>{phone.name}</a>
       <p>{phone.snippet}</p>

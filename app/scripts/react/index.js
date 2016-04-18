@@ -1,11 +1,13 @@
 /*eslint-disable import/default*/
 
 import React from 'react';
-import {render} from 'react-dom';
-import {Provider} from 'react-redux';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { Router, hashHistory } from 'react-router';
 
-import {fetchAll} from './phones/actions';
-import PhoneList from './phones/components/PhoneList';
+
+import { fetchAll } from './phones/actions';
+import routes from './routes';
 
 import configureStore from './store/configureStore';
 
@@ -16,6 +18,6 @@ store.dispatch(fetchAll());
 
 render(
   <Provider store={store}>
-    <PhoneList/>
+    <Router history={hashHistory} routes={routes}/>
   </Provider>, document.getElementById('app')
 );
