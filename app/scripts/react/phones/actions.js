@@ -2,9 +2,10 @@
 import * as t from './actionTypes';
 import fetch from 'isomorphic-fetch';
 
-export const search = (searchText) => ({
+export const search = (searchText, sortOrder) => ({
   type: t.SEARCH,
-  searchText
+  searchText,
+  sortOrder
 });
 
 export const selectImage = (imageUrl) => ({

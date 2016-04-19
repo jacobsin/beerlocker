@@ -5,7 +5,8 @@ const initialState = {
   items: [],
   detail: null,
   error: null,
-  searchText: ''
+  searchText: '',
+  sortOrder: 'name'
 };
 
 export default function phonesAppState(state = initialState, action) {
@@ -61,7 +62,8 @@ export default function phonesAppState(state = initialState, action) {
     case t.SEARCH:
       return {
         ...state,
-        searchText: action.searchText
+        searchText: action.searchText,
+        sortOrder: action.sortOrder
       };
 
     default:

@@ -12,9 +12,15 @@ export const filterByText = (items, text) => {
   return items.filter(phone => text.length == 0 || phone.name.indexOf(text) >= 0 || phone.snippet.indexOf(text) >= 0);
 };
 
+export const sortBy = (items, sortOrder) => {
+  const prop = sortOrder.replace(/^-/, '');
+  const direction = sortOrder.startsWith('-') ? -1 : 1;
+  return items.sort((phone1, phone2) => (phone1[prop] < phone2[prop] ? -1 : 1) * direction);
+};
+
 export const getFilteredItems = (state) => {
-  const {items, searchText} = state[NAME];
-  return filterByText(items, searchText);
+  const {items, searchText, sortOrder} = state[NAME];
+  return sortBy(filterByText(items, searchText), sortOrder);
 };
 
 

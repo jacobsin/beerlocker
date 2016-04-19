@@ -36,7 +36,7 @@ PhoneList.propTypes = {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onUserInput: (searchText) => dispatch(search(searchText))
+    onUserInput: (searchText, sortOrder) => dispatch(search(searchText, sortOrder))
   };
 };
 

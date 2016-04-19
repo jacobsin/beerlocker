@@ -11,7 +11,7 @@ class SearchBar extends React.Component {
   handleChange() {
     this.props.onUserInput(
       this.refs.searchTextInput.value,
-      this.refs.sortOrderInput.selected
+      this.refs.sortOrderInput.value
     );
   }
 
