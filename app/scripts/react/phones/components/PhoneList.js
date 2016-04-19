@@ -7,12 +7,12 @@ import PhoneItem from './PhoneItem';
 import SearchBar from './SearchBar';
 
 
-const PhoneList = ({searchText, filteredItems, dispatch}) => {
+const PhoneList = ({searchText, filteredItems, onUserInput}) => {
   return (
     <div className="container-fluid">
       <div className="row">
 
-        <SearchBar query={searchText} onUserInput={(searchText)=>dispatch(search(searchText))}/>
+        <SearchBar query={searchText} onUserInput={onUserInput}/>
 
         <div className="col-md-10">
 
@@ -31,9 +31,16 @@ const PhoneList = ({searchText, filteredItems, dispatch}) => {
 PhoneList.propTypes = {
   searchText: PropTypes.string.isRequired,
   filteredItems: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired
+  onUserInput: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onUserInput: (searchText) => dispatch(search(searchText))
+  };
 };
 
 export default connect(
-  createStructuredSelector({searchText: getSearchText, filteredItems: getFilteredItems})
+  createStructuredSelector({searchText: getSearchText, filteredItems: getFilteredItems}),
+  mapDispatchToProps
 )(PhoneList);

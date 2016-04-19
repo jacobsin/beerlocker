@@ -13,12 +13,11 @@ class PhoneDetail extends React.Component {
   }
 
   componentDidMount() {
-    const {dispatch, params} = this.props;
-    dispatch(fetchOne(params.id));
+    this.props.fetch();
   }
 
   render() {
-    const {detail, mainImageUrl, dispatch} = this.props;
+    const {detail, mainImageUrl, onImageClick} = this.props;
     if (!detail) return (<div>mooo</div>);
 
     return (
@@ -32,7 +31,7 @@ class PhoneDetail extends React.Component {
           <ul className="phone-thumbs">
             {detail.images.map(i =>
             <li key={i}>
-              <img src={i} onClick={()=>dispatch(selectImage(i))} />
+              <img src={i} onClick={()=>onImageClick(i)} />
             </li>
             )}
           </ul>
@@ -149,12 +148,21 @@ class PhoneDetail extends React.Component {
 }
 
 PhoneDetail.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  fetch: PropTypes.func.isRequired,
+  onImageClick: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
   detail: PropTypes.object,
   mainImageUrl: PropTypes.string
 };
 
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onImageClick: (i) => dispatch(selectImage(i)),
+    fetch: ()=> dispatch(fetchOne(ownProps.params.id))
+  };
+};
+
 export default connect(
-  createStructuredSelector({detail: getDetail, mainImageUrl: getMainImageUrl})
+  createStructuredSelector({detail: getDetail, mainImageUrl: getMainImageUrl}),
+  mapDispatchToProps
 )(PhoneDetail);
