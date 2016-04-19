@@ -1,29 +1,23 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { getAll } from '../selectors';
+import { getSearchText, getFilteredItems } from '../selectors';
+import { search } from '../actions';
 import PhoneItem from './PhoneItem';
+import SearchBar from './SearchBar';
 
 
-const PhoneList = ({phones}) => {
+const PhoneList = ({searchText, filteredItems, dispatch}) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-2">
 
-          Search: <input/>
-          Sort by:
-          <select>
-            <option value="name">Alphabetical</option>
-            <option value="age">Newest</option>
-            <option value="-age">Oldest</option>
-          </select>
+        <SearchBar query={searchText} onUserInput={(searchText)=>dispatch(search(searchText))}/>
 
-        </div>
         <div className="col-md-10">
 
           <ul className="phones">
-            {phones.items.map(i =>
+            {filteredItems.map(i =>
               <PhoneItem phone={i} key={i.id}/>)
             }
           </ul>
@@ -35,9 +29,11 @@ const PhoneList = ({phones}) => {
 };
 
 PhoneList.propTypes = {
-  phones: PropTypes.object.isRequired
+  searchText: PropTypes.string.isRequired,
+  filteredItems: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 export default connect(
-  createStructuredSelector({phones: getAll})
+  createStructuredSelector({searchText: getSearchText, filteredItems: getFilteredItems})
 )(PhoneList);

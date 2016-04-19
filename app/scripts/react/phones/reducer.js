@@ -4,7 +4,8 @@ const initialState = {
   isFetching: false,
   items: [],
   detail: null,
-  error: null
+  error: null,
+  searchText: ''
 };
 
 export default function phonesAppState(state = initialState, action) {
@@ -55,6 +56,12 @@ export default function phonesAppState(state = initialState, action) {
       return {
         ...state,
         mainImageUrl: action.imageUrl
+      };
+
+    case t.SEARCH:
+      return {
+        ...state,
+        searchText: action.searchText
       };
 
     default:
