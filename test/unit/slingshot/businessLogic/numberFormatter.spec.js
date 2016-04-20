@@ -1,5 +1,5 @@
-import NumberFormatter from './numberFormatter';
-import chai, {should} from 'chai';
+import NumberFormatter from './../../../../app/scripts/slingshot/businessLogic/numberFormatter';
+import '../../../helpers/chai';
 
 describe('Number Formatter', () => {
 	describe('getCurrencyFormattedNumber', () => {

@@ -1,11 +1,16 @@
+require '../../helpers/angular'
+require '../../helpers/chai'
+
+require '../../../app/scripts/angular'
+
 describe 'PhoneCat controllers', ->
 
     equalData = (expected) ->
         (actual) -> angular.equals(actual, expected)
 
     # Load our app module definition before each test.
-    beforeEach module 'phonecatApp'
-    beforeEach module 'phonecatServices'
+    beforeEach ngModule 'phonecatApp'
+    beforeEach ngModule 'phonecatServices'
 
     describe 'PhoneListCtrl', ->
 

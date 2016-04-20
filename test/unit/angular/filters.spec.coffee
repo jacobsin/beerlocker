@@ -1,6 +1,10 @@
+require '../../helpers/angular'
+require '../../helpers/chai'
+require '../../../app/scripts/angular/filters'
+
 describe 'PhoneCat filters', ->
 
-    beforeEach module 'phonecatFilters'
+    beforeEach ngModule 'phonecatFilters'
 
     describe 'checkmark', ->
 

@@ -158,7 +158,7 @@ PhoneDetail.propTypes = {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onImageClick: (i) => dispatch(selectImage(i)),
-    fetch: ()=> dispatch(fetchOne(ownProps.params.id))
+    fetch: () => dispatch(fetchOne(ownProps.params.id))
   };
 };
 

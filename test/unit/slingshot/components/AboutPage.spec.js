@@ -1,6 +1,6 @@
 import chai from 'chai';
 import cheerio from 'cheerio';
-import AboutPage from './AboutPage';
+import AboutPage from './../../../../app/scripts/slingshot/components/AboutPage';
 import React from 'react';
 import ReactDOMServer from 'react/lib/ReactDOMServer';
 

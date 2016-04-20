@@ -1,5 +1,5 @@
-import chai, {should} from 'chai';
-import DateHelper from './dateHelper';
+import '../../../helpers/chai';
+import DateHelper from './../../../../app/scripts/slingshot/businessLogic/dateHelper';
 
 describe('Date Helper', () => {
     describe('getFormattedDateTime', () => {

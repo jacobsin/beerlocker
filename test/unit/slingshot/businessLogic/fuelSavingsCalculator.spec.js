@@ -1,5 +1,5 @@
-import chai, {should} from 'chai';
-import Calculator from './fuelSavingsCalculator';
+import '../../../helpers/chai';
+import Calculator from './../../../../app/scripts/slingshot/businessLogic/fuelSavingsCalculator';
 
 describe('Fuel Savings Calculator', () => {
     describe('necessaryDataIsProvidedToCalculateSavings', () => {

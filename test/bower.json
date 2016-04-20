@@ -2,9 +2,7 @@
   "name": "beerlocker",
   "private": true,
   "dependencies": {
-    "chai": "~1.8.0",
-    "mocha": "~1.14.0",
-    "angular-mocks": "~1.4.1"
+    "angular-mocks": "1.5.5"
   },
   "devDependencies": {}
 }

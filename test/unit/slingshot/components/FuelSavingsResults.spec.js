@@ -1,6 +1,6 @@
 import chai, {should} from 'chai';
 import cheerio from 'cheerio';
-import FuelSavingsResults from './FuelSavingsResults';
+import FuelSavingsResults from './../../../../app/scripts/slingshot/components/FuelSavingsResults';
 import React from 'react';
 import ReactDOMServer from 'react/lib/ReactDOMServer';
 

@@ -1,4 +1,6 @@
-'use strict';
+// 'use strict';
+
+import {expect} from 'chai';
 
 describe('Sample Test Example', function () {
     it('should run here few assertions', function () {

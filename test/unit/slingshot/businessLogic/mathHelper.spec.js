@@ -1,7 +1,5 @@
-import chai from 'chai';
-import MathHelper from './mathHelper';
-
-chai.should();
+import '../../../helpers/chai';
+import MathHelper from './../../../../app/scripts/slingshot/businessLogic/mathHelper';
 
 describe('Math Helper', () => {
 	describe('roundNumber', () => {
