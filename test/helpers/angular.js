@@ -5,6 +5,7 @@ global.window = global.document.defaultView;
 global.navigator = window.navigator = {userAgent: 'jsdom'};
 global.Node = window.Node;
 
+
 global.window.mocha = {};
 global.window.beforeEach = beforeEach;
 global.window.afterEach = afterEach;
@@ -16,6 +17,9 @@ require('../../app/bower_components/angular/angular');
 require('../../app/bower_components/angular-route');
 require('../../app/bower_components/angular-resource');
 require('../bower_components/angular-mocks/angular-mocks');
+
+global.$ = require('../../app/bower_components/jquery/dist/jquery.min');
+$('body').append('<div id="mocha-fixture"/>');
 
 /*
  * Only for NPM users
