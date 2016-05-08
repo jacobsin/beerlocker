@@ -1,7 +1,13 @@
-const jsdom = require('jsdom').jsdom;
+const jsdom = require('jsdom');
+const virtualConsole = jsdom.createVirtualConsole().sendTo(console);
 
-global.document = jsdom('<html><head><script></script></head><body></body></html>');
+global.document = jsdom.jsdom('<html><head><script></script></head><body></body></html>', {virtualConsole});
 global.window = global.document.defaultView;
+
+// window.addEventListener("error", function (event) {
+//   console.error("script error!!", event.error);
+// });
+
 global.navigator = window.navigator = {userAgent: 'jsdom'};
 global.Node = window.Node;
 
@@ -19,7 +25,7 @@ require('../../app/bower_components/angular-resource');
 require('../bower_components/angular-mocks/angular-mocks');
 
 global.$ = require('../../app/bower_components/jquery/dist/jquery.min');
-$('body').append('<div id="mocha-fixture"/>');
+$('body').append('<div id="mocha-fixture"></div>');
 
 /*
  * Only for NPM users

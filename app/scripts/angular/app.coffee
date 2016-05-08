@@ -1,10 +1,12 @@
-require('./controllers')
 require('./filters')
 require('./services')
+require('./phone-detail-directive')
+require('./phone-list-directive')
 
 phonecatApp = angular.module 'phonecatApp', [
     'ngRoute',
-    'phonecatControllers',
+    'phoneDetailDirective',
+    'phoneListDirective',
     'phonecatFilters',
     'phonecatServices'
 ]
@@ -13,11 +15,11 @@ phonecatApp.config ['$routeProvider',
     ($routeProvider) ->
         $routeProvider
             .when '/phones', {
-                templateUrl: require('./partials/phone-list.html'),
+                template: '<phone-list></phone-list>'
                 controller: 'PhoneListCtrl'
             }
             .when '/phones/:phoneId', {
-                templateUrl: require('./partials/phone-detail.html'),
+                template: '<phone-detail></phone-detail>'
                 controller: 'PhoneDetailCtrl'
             }
             .otherwise {

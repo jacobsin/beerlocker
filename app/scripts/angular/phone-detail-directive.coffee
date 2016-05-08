@@ -1,3 +1,7 @@
+phoneDetailDirective = angular.module('phoneDetailDirective', [])
+
+phoneDetailDirective.directive 'phoneDetail', ->
+  template: '''
 <img ng-src="{{mainImageUrl}}" class="phone">
 
 <h1>{{phone.name}}</h1>
@@ -111,3 +115,14 @@
         <dd>{{phone.additionalFeatures}}</dd>
     </li>
 </ul>
+'''
+
+phoneDetailDirective.controller 'PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone'
+  ($scope, $routeParams, Phone) ->
+    $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, (phone) ->
+      $scope.mainImageUrl = phone.images[0]
+    )
+
+    $scope.setImage = (imageUrl) ->
+      $scope.mainImageUrl = imageUrl
+]
