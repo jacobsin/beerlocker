@@ -2,7 +2,7 @@
 
 class AngularApp
 
-  constructor: (@module, @element, @attachTo) ->
+  constructor: (@module, @element, @attachTo = $('#mocha-fixture')) ->
     @injector = angular.injector(['ng', 'ngMock', @module])
     @httpBackend = @injector.get('$httpBackend')
     @rootScope = @injector.get('$rootScope')

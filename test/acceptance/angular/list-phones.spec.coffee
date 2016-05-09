@@ -8,7 +8,7 @@ _ = require 'lodash'
 describe 'List Phones', ->
 
   before ->
-    @app = new AngularApp('phonecatApp', '<div ng-view></div>', $('#mocha-fixture'))
+    @app = new AngularApp('phonecatApp', '<div ng-view></div>')
 
     @app.httpBackend.when('GET', 'api/static/phones/phones.json')
       .respond([{name: 'Nexus S'}, {name: 'Motorola DROID'}])
