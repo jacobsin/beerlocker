@@ -9,14 +9,15 @@ class AngularApp
     @$compile = @$injector.get('$compile')
 
   start: ->
-    @$el = @$compile(angular.element(@element))(@$scope)
+    @$el = angular.element(@element)
+    @$compile(@$el)(@$scope)
     @attachTo.append(@$el)
 
     @$httpBackend.flush()
     @$scope.$digest()
 
   apply: ->
-    @$scope.$digest()
+    @$scope.$apply()
 
   stop: ->
     @attachTo.empty()

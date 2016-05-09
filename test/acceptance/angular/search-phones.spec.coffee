@@ -28,9 +28,9 @@ describe 'Search Phones', ->
   describe 'search by name', ->
 
     before ->
-      $('.sidebar input.search').val('Nex').trigger('change')
-      debugger
+#      $('.sidebar input.search').val('Nex').trigger('input')
+      @app.$scope.query = 'Nex'
       @app.apply()
 
-    xit 'should have phone names', ->
+    it 'should have phone names', ->
       _($('.phones .name')).map('innerHTML').value().should.be.deep.equal(['Nexus S'])
