@@ -28,7 +28,7 @@ describe 'Search Phones', ->
   describe 'search by name', ->
 
     before ->
-      angular.element($('.sidebar input.search').val('Nex')).triggerHandler('input')
+      angular.element($('.sidebar input.search').val('Nex')).triggerHandler('change')
 #      @app.$scope.query = 'Nex'
 #      @app.apply()
 
