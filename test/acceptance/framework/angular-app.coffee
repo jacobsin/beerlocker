@@ -3,19 +3,23 @@
 class AngularApp
 
   constructor: (@module, @element, @attachTo = $('#mocha-fixture')) ->
-    @injector = angular.injector(['ng', 'ngMock', @module])
-    @httpBackend = @injector.get('$httpBackend')
-    @rootScope = @injector.get('$rootScope')
+    @$injector = angular.injector(['ng', 'ngMock', @module])
+    @$httpBackend = @$injector.get('$httpBackend')
+    @$scope = @$injector.get('$rootScope').$new()
+    @$compile = @$injector.get('$compile')
 
   start: ->
-    el = angular.element(@element)
-    compile = @injector.get('$compile')
+    @$el = @$compile(angular.element(@element))(@$scope)
+    @attachTo.append(@$el)
 
-    compile(el)(@rootScope)
-    @attachTo.append(el)
+    @$httpBackend.flush()
+    @$scope.$digest()
 
-    @httpBackend.flush()
-    @rootScope.$digest()
+  apply: ->
+    @$scope.$digest()
+
+  stop: ->
+    @attachTo.empty()
 
 
 module.exports = AngularApp

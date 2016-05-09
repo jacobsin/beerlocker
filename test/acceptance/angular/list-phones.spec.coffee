@@ -10,11 +10,14 @@ describe 'List Phones', ->
   before ->
     @app = new AngularApp('phonecatApp', '<div ng-view></div>')
 
-    @app.httpBackend.when('GET', 'api/static/phones/phones.json')
+    @app.$httpBackend.when('GET', 'api/static/phones/phones.json')
       .respond([{name: 'Nexus S'}, {name: 'Motorola DROID'}])
 
     @app.start()
     window.location = '/phones'
+
+  after ->
+    @app.stop()
 
   it 'should render sidebar', ->
     $('.sidebar').should.have.length.of(1)
