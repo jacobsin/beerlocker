@@ -1,8 +1,8 @@
 require '../../helpers/angular'
 require '../../helpers/chai'
 
-AngularApp = require './angular-app.coffee'
 require '../../../app/scripts/angular/app.coffee'
+AngularApp = require '../framework/angular-app.coffee'
 _ = require 'lodash'
 
 describe 'List Phones', ->
