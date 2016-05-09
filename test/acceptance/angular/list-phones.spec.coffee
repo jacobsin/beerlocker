@@ -17,22 +17,22 @@ describe 'List Phones', ->
     window.location = '/phones'
 
   it 'should render sidebar', ->
-    $('.sidebar').length.should.be.equal(1)
+    $('.sidebar').should.have.length.of(1)
 
   it 'should render search input', ->
-    $('.sidebar input.search').length.should.be.equal(1)
+    $('.sidebar input.search').should.have.length.of(1)
 
   it 'should have no search input value by default', ->
-    $('.sidebar input.search').val().should.be.equal('')
+    $('.sidebar input.search').should.have.$val('')
 
   it 'should render sort by dropdown', ->
-    $('.sidebar select.sort-by').length.should.be.equal(1)
+    $('.sidebar select.sort-by').should.have.length.of(1)
 
   it 'should sort by age by default', ->
-    $('.sidebar select.sort-by').val().should.be.equal('age')
+    $('.sidebar select.sort-by').should.have.$val('age')
 
   it 'should render phone list', ->
-    $('.phones').length.should.be.equal(1)
+    $('.phones').should.have.length.of(1)
 
   it 'should have phone names', ->
     _($('.phones .name')).map('innerHTML').value().should.be.deep.equal(['Nexus S', 'Motorola DROID'])
