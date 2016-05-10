@@ -3,7 +3,8 @@ require '../../helpers/chai'
 
 require '../../../app/scripts/angular/app.coffee'
 AngularApp = require '../framework/angular-app.coffee'
-_ = require 'lodash'
+SidebarTester = require '../framework/sidebar-tester.coffee'
+PhoneListTester = require '../framework/phone-list-tester.coffee'
 
 describe 'Search Phones', ->
 
@@ -15,22 +16,22 @@ describe 'Search Phones', ->
 
     @app.start()
     window.location = '/phones'
+    @sidebar = new SidebarTester()
+    @phoneList = new PhoneListTester()
 
   after ->
     @app.stop()
 
   it 'should have no search input value by default', ->
-    $('.sidebar input.search').should.have.$val('')
+    @sidebar.getSearchInput().should.have.$val('')
 
   it 'should have phone names', ->
-    _($('.phones .name')).map('innerHTML').value().should.be.deep.equal(['Nexus S', 'Motorola DROID'])
+    @phoneList.getNames().should.be.deep.equal(['Nexus S', 'Motorola DROID'])
 
   describe 'search by name', ->
 
     before ->
-      angular.element($('.sidebar input.search').val('Nex')).triggerHandler('change')
-#      @app.$scope.query = 'Nex'
-#      @app.apply()
+      @sidebar.search('Nex')
 
     it 'should have phone names', ->
-      _($('.phones .name')).map('innerHTML').value().should.be.deep.equal(['Nexus S'])
+      @phoneList.getNames().should.be.deep.equal(['Nexus S'])

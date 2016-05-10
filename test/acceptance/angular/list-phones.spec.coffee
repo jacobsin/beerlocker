@@ -3,7 +3,8 @@ require '../../helpers/chai'
 
 require '../../../app/scripts/angular/app.coffee'
 AngularApp = require '../framework/angular-app.coffee'
-_ = require 'lodash'
+SidebarTester = require '../framework/sidebar-tester.coffee'
+PhoneListTester = require '../framework/phone-list-tester.coffee'
 
 describe 'List Phones', ->
 
@@ -15,27 +16,29 @@ describe 'List Phones', ->
 
     @app.start()
     window.location = '/phones'
+    @sidebar = new SidebarTester()
+    @phoneList = new PhoneListTester()
 
   after ->
     @app.stop()
 
   it 'should render sidebar', ->
-    $('.sidebar').should.have.length.of(1)
+    @sidebar.$el.should.have.length.of(1)
 
   it 'should render search input', ->
-    $('.sidebar input.search').should.have.length.of(1)
+    @sidebar.getSearchInput().should.have.length.of(1)
 
   it 'should have no search input value by default', ->
-    $('.sidebar input.search').should.have.$val('')
+    @sidebar.getSearchInput().should.have.$val('')
 
   it 'should render sort by dropdown', ->
-    $('.sidebar select.sort-by').should.have.length.of(1)
+    @sidebar.getSortBySelect().should.have.length.of(1)
 
   it 'should sort by age by default', ->
-    $('.sidebar select.sort-by').should.have.$val('age')
+    @sidebar.getSortBySelect().should.have.$val('age')
 
   it 'should render phone list', ->
-    $('.phones').should.have.length.of(1)
+    @phoneList.$el.should.have.length.of(1)
 
   it 'should have phone names', ->
-    _($('.phones .name')).map('innerHTML').value().should.be.deep.equal(['Nexus S', 'Motorola DROID'])
+    @phoneList.getNames().should.be.deep.equal(['Nexus S', 'Motorola DROID'])
