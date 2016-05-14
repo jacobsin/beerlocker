@@ -8,6 +8,8 @@ export const getMainImageUrl = state => state[NAME].mainImageUrl;
 
 export const getSearchText = state => state[NAME].searchText;
 
+export const getSortOrder = state => state[NAME].sortOrder;
+
 export const filterByText = (items, text) => {
   return items.filter(phone => text.length == 0 || phone.name.indexOf(text) >= 0 || phone.snippet.indexOf(text) >= 0);
 };

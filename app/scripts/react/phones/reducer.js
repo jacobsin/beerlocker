@@ -6,7 +6,7 @@ const initialState = {
   detail: null,
   error: null,
   searchText: '',
-  sortOrder: 'name'
+  sortOrder: 'age'
 };
 
 export default function phonesAppState(state = initialState, action) {

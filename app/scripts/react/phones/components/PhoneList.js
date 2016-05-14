@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { getSearchText, getFilteredItems } from '../selectors';
+import { getSearchText, getSortOrder, getFilteredItems } from '../selectors';
 import { search, fetchAll } from '../actions';
 import PhoneItem from './PhoneItem';
 import SearchBar from './SearchBar';
 
 
-class PhoneList extends React.Component {
+export class PhoneList extends React.Component {
 
   constructor(props) {
     super(props);
@@ -18,12 +18,12 @@ class PhoneList extends React.Component {
   }
 
   render() {
-    const {searchText, filteredItems, onUserInput} = this.props;
+    const {searchText, sortOrder, filteredItems, onUserInput} = this.props;
     return (
       <div className="container-fluid">
         <div className="row">
 
-          <SearchBar query={searchText} onUserInput={onUserInput}/>
+          <SearchBar query={searchText} sortOrder={sortOrder} onUserInput={onUserInput}/>
 
           <div className="col-md-10">
 
@@ -42,6 +42,7 @@ class PhoneList extends React.Component {
 
 PhoneList.propTypes = {
   searchText: PropTypes.string.isRequired,
+  sortOrder: PropTypes.string.isRequired,
   filteredItems: PropTypes.array.isRequired,
   onUserInput: PropTypes.func.isRequired,
   fetchAll: PropTypes.func.isRequired
@@ -55,6 +56,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default connect(
-  createStructuredSelector({searchText: getSearchText, filteredItems: getFilteredItems}),
+  createStructuredSelector({searchText: getSearchText, sortOrder: getSortOrder, filteredItems: getFilteredItems}),
   mapDispatchToProps
 )(PhoneList);

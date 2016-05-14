@@ -1,7 +1,8 @@
 const jsdom = require('jsdom');
 const virtualConsole = jsdom.createVirtualConsole().sendTo(console);
+const url = 'http://localhost';
 
-global.document = jsdom.jsdom('<html><head><script></script></head><body></body></html>', {virtualConsole});
+global.document = jsdom.jsdom('<html><head><script></script></head><body></body></html>', {virtualConsole, url});
 global.window = global.document.defaultView;
 
 // window.addEventListener("error", function (event) {

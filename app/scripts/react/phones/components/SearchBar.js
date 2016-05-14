@@ -16,13 +16,13 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    const {searchText} = this.props;
+    const {searchText, sortOrder} = this.props;
     return (
-      <div className="col-md-2">
+      <div className="sidebar col-md-2">
 
-        Search: <input ref="searchTextInput" value={searchText} onChange={this.handleChange}/>
+        Search: <input ref="searchTextInput" className="search" value={searchText} onChange={this.handleChange}/>
         Sort by:
-        <select ref="sortOrderInput" onChange={this.handleChange}>
+        <select ref="sortOrderInput" className="sort-by" value={sortOrder} onChange={this.handleChange}>
           <option value="name">Alphabetical</option>
           <option value="age">Newest</option>
           <option value="-age">Oldest</option>
@@ -35,6 +35,7 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   searchText: PropTypes.string,
+  sortOrder: PropTypes.string,
   onUserInput: PropTypes.func.isRequired
 };
 

@@ -4,7 +4,7 @@ phoneListDirective.directive 'phoneList', ->
   template: '''
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2 sidebar">
+        <div class="sidebar col-md-2">
             <!--Sidebar content-->
 
             Search: <input class="search" ng-model="query">

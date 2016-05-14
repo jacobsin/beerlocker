@@ -18,6 +18,7 @@ export const fetchOne = (id) => ({
   payload: {
     promise: fetch(`api/static/phones/${id}.json`)
       .then(response => response.json())
+      .catch(console.error)
   }
 });
 
@@ -26,5 +27,6 @@ export const fetchAll = () => ({
   payload: {
     promise: fetch('api/static/phones/phones.json')
       .then(response => response.json())
+      .catch(console.error)
   }
 });

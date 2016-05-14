@@ -6,7 +6,7 @@ const PhoneItem = ({phone}) => {
       <a href={`#/phones/${phone.id}`} className="thumb">
         <img src={phone.imageUrl}/>
       </a>
-      <a href={`#/phones/${phone.id}`}>{phone.name}</a>
+      <a href={`#/phones/${phone.id}`} className="name">{phone.name}</a>
       <p>{phone.snippet}</p>
     </li>
   );
