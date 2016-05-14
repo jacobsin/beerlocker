@@ -2,41 +2,55 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { getSearchText, getFilteredItems } from '../selectors';
-import { search } from '../actions';
+import { search, fetchAll } from '../actions';
 import PhoneItem from './PhoneItem';
 import SearchBar from './SearchBar';
 
 
-const PhoneList = ({searchText, filteredItems, onUserInput}) => {
-  return (
-    <div className="container-fluid">
-      <div className="row">
+class PhoneList extends React.Component {
 
-        <SearchBar query={searchText} onUserInput={onUserInput}/>
+  constructor(props) {
+    super(props);
+  }
 
-        <div className="col-md-10">
+  componentDidMount() {
+    this.props.fetchAll();
+  }
 
-          <ul className="phones">
+  render() {
+    const {searchText, filteredItems, onUserInput} = this.props;
+    return (
+      <div className="container-fluid">
+        <div className="row">
+
+          <SearchBar query={searchText} onUserInput={onUserInput}/>
+
+          <div className="col-md-10">
+
+            <ul className="phones">
             {filteredItems.map(i =>
-              <PhoneItem phone={i} key={i.id}/>)
-            }
-          </ul>
+              <PhoneItem phone={i} key={i.id}/>
+            )}
+            </ul>
 
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 PhoneList.propTypes = {
   searchText: PropTypes.string.isRequired,
   filteredItems: PropTypes.array.isRequired,
-  onUserInput: PropTypes.func.isRequired
+  onUserInput: PropTypes.func.isRequired,
+  fetchAll: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onUserInput: (searchText, sortOrder) => dispatch(search(searchText, sortOrder))
+    onUserInput: (searchText, sortOrder) => dispatch(search(searchText, sortOrder)),
+    fetchAll: () => dispatch(fetchAll())
   };
 };
 

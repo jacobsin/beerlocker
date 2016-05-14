@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { Router, hashHistory } from 'react-router';
 
 
-import { fetchAll } from './phones/actions';
 import routes from './routes';
 
 import configureStore from './store/configureStore';
@@ -14,7 +13,6 @@ import configureStore from './store/configureStore';
 import '../../styles/react.less';
 
 const store = configureStore();
-store.dispatch(fetchAll());
 
 render(
   <Provider store={store}>
