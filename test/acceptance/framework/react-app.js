@@ -2,6 +2,7 @@ import React   from 'react';
 import {render} from 'react-dom';
 
 import fetchMock from 'fetch-mock';
+import 'isomorphic-fetch';
 
 class ReactApp {
 
