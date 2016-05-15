@@ -1,5 +1,6 @@
 import React   from 'react';
 import {render} from 'react-dom';
+import {Simulate} from 'react-addons-test-utils';
 
 import fetchMock from 'fetch-mock';
 import 'isomorphic-fetch';
@@ -10,6 +11,7 @@ class ReactApp {
     this.fetchMock = fetchMock;
     this.rootComponent = rootComponent;
     this.attachTo = attachTo || document.getElementById('mocha-fixture');
+    this.Simulate = Simulate;
   }
 
   start() {

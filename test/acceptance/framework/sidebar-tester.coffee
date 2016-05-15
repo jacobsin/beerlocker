@@ -11,5 +11,6 @@ class SidebarTester
   search: (query)->
     $el = @getSearchInput().val(query).trigger('change')
     angular?.element($el).triggerHandler('change')
+    $el
 
 module.exports = SidebarTester

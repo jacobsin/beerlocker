@@ -12,7 +12,10 @@ describe('Search Phones', ()=> {
     this.app = new ReactApp(rootComponent);
 
     this.app.fetchMock.mock("api/static/phones/phones.json",
-      [{name: 'Nexus S', id: 'nexus-s'}, {name: 'Motorola DROID', id: 'motorola-droid'}]);
+      [
+        {name: 'Nexus S', id: 'nexus-s', snippet: 'some-snippet'},
+        {name: 'Motorola DROID', id: 'motorola-droid' , snippet: 'some-other-snippet'}
+      ]);
 
     this.app.start();
 
@@ -37,10 +40,11 @@ describe('Search Phones', ()=> {
   describe('search by name', ()=> {
 
     before(function () {
-      this.sidebar.search('Nex');
+      const $el = this.sidebar.search('Nex');
+      this.app.Simulate.change($el[0]);
     });
 
-    xit('should have phone names', function () {
+    it('should have phone names', function () {
       this.phoneList.getNames().should.be.deep.equal(['Nexus S']);
     });
 
