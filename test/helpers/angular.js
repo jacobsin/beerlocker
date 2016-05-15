@@ -1,21 +1,4 @@
-const jsdom = require('jsdom');
-const virtualConsole = jsdom.createVirtualConsole().sendTo(console);
-const url = 'http://localhost';
-
-global.document = jsdom.jsdom('<html><head><script></script></head><body></body></html>', {virtualConsole, url});
-global.window = global.document.defaultView;
-
-// window.addEventListener("error", function (event) {
-//   console.error("script error!!", event.error);
-// });
-
-global.navigator = window.navigator = {userAgent: 'jsdom'};
-global.Node = window.Node;
-
-
-global.window.mocha = {};
-global.window.beforeEach = beforeEach;
-global.window.afterEach = afterEach;
+require('./jsdom');
 
 /*
  * Only for Bower users
@@ -24,9 +7,6 @@ require('../../app/bower_components/angular/angular');
 require('../../app/bower_components/angular-route');
 require('../../app/bower_components/angular-resource');
 require('../bower_components/angular-mocks/angular-mocks');
-
-global.$ = require('../../app/bower_components/jquery/dist/jquery.min');
-$('body').append('<div id="mocha-fixture"></div>');
 
 /*
  * Only for NPM users

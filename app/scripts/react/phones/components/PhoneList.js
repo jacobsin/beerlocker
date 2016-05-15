@@ -7,7 +7,7 @@ import PhoneItem from './PhoneItem';
 import SearchBar from './SearchBar';
 
 
-export class PhoneList extends React.Component {
+class PhoneList extends React.Component {
 
   constructor(props) {
     super(props);

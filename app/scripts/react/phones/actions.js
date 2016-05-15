@@ -1,6 +1,7 @@
 /*eslint-disable import/default*/
+
 import * as t from './actionTypes';
-import fetch from 'isomorphic-fetch';
+import 'whatwg-fetch';
 
 export const search = (searchText, sortOrder) => ({
   type: t.SEARCH,

@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 
 import '../../styles/react.less';
 
-import rootElement from './rootComponent';
+import rootComponent from './rootComponent';
 
 render(
-  rootElement, document.getElementById('app')
+  rootComponent, document.getElementById('app')
 );

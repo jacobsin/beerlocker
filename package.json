@@ -21,7 +21,6 @@
   "license": "MIT",
   "dependencies": {
     "connect-history-api-fallback": "1.1.0",
-    "isomorphic-fetch": "2.2.1",
     "object-assign": "4.0.1",
     "react": "0.14.7",
     "react-dom": "0.14.7",
@@ -29,7 +28,8 @@
     "react-router": "2.0.0",
     "redux": "3.3.1",
     "redux-promise-middleware": "3.0.0",
-    "reselect": "2.4.0"
+    "reselect": "2.4.0",
+    "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
     "babel-cli": "6.5.1",
@@ -55,6 +55,7 @@
     "eslint-plugin-import": "1.4.0",
     "eslint-plugin-react": "4.0.0",
     "extract-text-webpack-plugin": "1.0.1",
+    "fetch-mock": "4.5.0",
     "file-loader": "0.8.5",
     "html-loader": "0.4.3",
     "ignore-styles": "1.2.0",

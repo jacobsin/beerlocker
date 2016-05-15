@@ -1,7 +1,7 @@
-import '../../helpers/react'
+import '../../helpers/jsdom'
 import '../../helpers/chai'
 
-// import '../../../app/scripts/angular/app.coffee'
+import rootComponent from '../../../app/scripts/react/rootComponent';
 import ReactApp from '../framework/react-app'
 import SidebarTester from '../framework/sidebar-tester.coffee'
 import PhoneListTester from '../framework/phone-list-tester.coffee'
@@ -9,17 +9,14 @@ import PhoneListTester from '../framework/phone-list-tester.coffee'
 describe('List Phones', ()=> {
 
   before(function () {
-    this.app = new ReactApp();
+    this.app = new ReactApp(rootComponent);
 
-    this.app.server.respondWith("GET", "api/static/phones/phones.json",
-      [200, { "Content-Type": "application/json" },
-        JSON.stringify([{name: 'Nexus S'}, {name: 'Motorola DROID'}])]);
+    this.app.fetchMock.mock("api/static/phones/phones.json",
+      [{name: 'Nexus S', id: 'nexus-s'}, {name: 'Motorola DROID', id: 'motorola-droid'}]);
 
     this.app.start();
 
     window.location = '/phones';
-
-    this.app.server.respond();
 
     this.sidebar = new SidebarTester();
     this.phoneList = new PhoneListTester();
@@ -30,7 +27,6 @@ describe('List Phones', ()=> {
   });
 
   it('should render sidebar', function () {
-    debugger;
     this.sidebar.$el.should.have.length.of(1);
   });
 
@@ -54,8 +50,8 @@ describe('List Phones', ()=> {
     this.phoneList.$el.should.have.length.of(1);
   });
 
-  xit('should have phone names', function () {
-    this.phoneList.getNames().should.be.deep.equal(['Nexus S', 'Motorola DROID']);
+  it('should have phone names', function () {
+    this.phoneList.getNames().should.be.deep.equal(['Motorola DROID', 'Nexus S']);
   });
 
 });

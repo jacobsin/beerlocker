@@ -18,4 +18,4 @@ global.window.beforeEach = beforeEach;
 global.window.afterEach = afterEach;
 
 global.$ = require('../../app/bower_components/jquery/dist/jquery.min');
-$('body').append('<div id="mocha-fixture"></div>');
+$('body').html('<div id="mocha-fixture"></div>');

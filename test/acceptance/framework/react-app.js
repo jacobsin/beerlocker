@@ -1,21 +1,22 @@
 import React   from 'react';
 import {render} from 'react-dom';
-import {fakeServer} from 'sinon';
-// import { renderIntoDocument } from 'react-addons-test-utils';
-import rootElement from '../../../app/scripts/react/rootComponent';
+
+import fetchMock from 'fetch-mock';
 
 class ReactApp {
 
-  constructor() {
-    this.server = fakeServer.create();
+  constructor(rootComponent, attachTo) {
+    this.fetchMock = fetchMock;
+    this.rootComponent = rootComponent;
+    this.attachTo = attachTo || document.getElementById('mocha-fixture');
   }
 
   start() {
-    this.component = render(rootElement, document.getElementById('mocha-fixture'));
+    this.component = render(this.rootComponent, this.attachTo);
   }
 
   stop() {
-    this.server.respond();
+    this.fetchMock.restore();
   }
 }
 

@@ -6,7 +6,7 @@ import { getDetail, getMainImageUrl } from '../selectors';
 import { fetchOne, selectImage } from '../actions';
 import { checkmark } from '../helpers/unicode';
 
-export class PhoneDetail extends React.Component {
+class PhoneDetail extends React.Component {
 
   constructor(props) {
     super(props);
