@@ -9,7 +9,7 @@ class SidebarTester
     @$el.find('select.sort-by')
 
   search: (query)->
-    $el = @getSearchInput().val(query)
-    angular.element($el).triggerHandler('change')
+    $el = @getSearchInput().val(query).trigger('change')
+    angular?.element($el).triggerHandler('change')
 
 module.exports = SidebarTester
