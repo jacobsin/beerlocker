@@ -20,7 +20,7 @@ class ReactApp {
 
   stop() {
     this.fetchMock.restore();
-    $(this.attachTo).empty();
+    this.attachTo.innerHTML = null;
   }
 }
 

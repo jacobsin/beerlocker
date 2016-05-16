@@ -12,7 +12,7 @@ describe('List Phones', ()=> {
     this.app = new ReactApp(newRootComponent());
 
     this.app.fetchMock.mock("api/static/phones/phones.json",
-      [{name: 'Nexus S', id: 'nexus-s'}, {name: 'Motorola DROID', id: 'motorola-droid',}]);
+      [{name: 'Nexus S', id: 'nexus-s'}, {name: 'Motorola DROID', id: 'motorola-droid'}]);
 
     this.app.start();
 
