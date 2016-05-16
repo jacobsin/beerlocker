@@ -2,9 +2,9 @@ import '../../helpers/jsdom';
 import '../../helpers/chai';
 
 import {newRootComponent} from '../../../app/scripts/react/rootComponent';
-import ReactApp from '../framework/react-app';
-import SidebarTester from '../framework/sidebar-tester.coffee';
-import PhoneListTester from '../framework/phone-list-tester.coffee';
+import ReactApp from '../framework/app/react-app';
+import SidebarTester from '../framework/tester/sidebar-tester.coffee';
+import PhoneListTester from '../framework/tester/phone-list-tester.coffee';
 
 describe('Search Phones', ()=> {
 
@@ -41,7 +41,7 @@ describe('Search Phones', ()=> {
 
     before(function () {
       const $el = this.sidebar.search('Nex');
-      this.app.Simulate.change($el[0]);
+      // this.app.Simulate.change($el[0]);
     });
 
     it('should have phone names', function () {

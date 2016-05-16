@@ -1,3 +1,5 @@
+{triggerer} = require '../dom-event/triggerer'
+
 class SidebarTester
   constructor: ->
     @$el = $('.sidebar')
@@ -10,7 +12,6 @@ class SidebarTester
 
   search: (query)->
     $el = @getSearchInput().val(query).trigger('change')
-    angular?.element($el).triggerHandler('change')
-    $el
+    triggerer.trigger($el, 'change')
 
 module.exports = SidebarTester

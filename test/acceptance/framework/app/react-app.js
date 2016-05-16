@@ -1,9 +1,10 @@
 import React   from 'react';
 import {render} from 'react-dom';
-import {Simulate} from 'react-addons-test-utils';
 
 import fetchMock from 'fetch-mock';
 import 'isomorphic-fetch';
+
+import {triggerer, register} from './../dom-event/react-trigger';
 
 class ReactApp {
 
@@ -11,7 +12,7 @@ class ReactApp {
     this.fetchMock = fetchMock;
     this.rootComponent = rootComponent;
     this.attachTo = attachTo || document.getElementById('mocha-fixture');
-    this.Simulate = Simulate;
+    register();
   }
 
   start() {
@@ -19,6 +20,7 @@ class ReactApp {
   }
 
   stop() {
+    triggerer.restore();
     this.fetchMock.restore();
     this.attachTo.innerHTML = null;
   }

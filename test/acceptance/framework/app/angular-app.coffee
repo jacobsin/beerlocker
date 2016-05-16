@@ -1,4 +1,5 @@
 #angular = require('angular')
+{register, triggerer} = require './../dom-event/angular-trigger'
 
 class AngularApp
 
@@ -7,6 +8,7 @@ class AngularApp
     @$httpBackend = @$injector.get('$httpBackend')
     @$scope = @$injector.get('$rootScope').$new()
     @$compile = @$injector.get('$compile')
+    register()
 
   start: ->
     @$el = angular.element(@element)
@@ -20,6 +22,7 @@ class AngularApp
     @$scope.$apply()
 
   stop: ->
+    triggerer.restore()
     @attachTo.empty()
 
 

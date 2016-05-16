@@ -2,9 +2,9 @@ require '../../helpers/angular'
 require '../../helpers/chai'
 
 require '../../../app/scripts/angular/app.coffee'
-AngularApp = require '../framework/angular-app.coffee'
-SidebarTester = require '../framework/sidebar-tester.coffee'
-PhoneListTester = require '../framework/phone-list-tester.coffee'
+AngularApp = require '../framework/app/angular-app.coffee'
+SidebarTester = require '../framework/tester/sidebar-tester.coffee'
+PhoneListTester = require '../framework/tester/phone-list-tester.coffee'
 
 describe 'List Phones', ->
 

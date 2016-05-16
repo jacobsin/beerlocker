@@ -2,9 +2,9 @@ import '../../helpers/jsdom'
 import '../../helpers/chai'
 
 import {newRootComponent} from '../../../app/scripts/react/rootComponent';
-import ReactApp from '../framework/react-app'
-import SidebarTester from '../framework/sidebar-tester.coffee'
-import PhoneListTester from '../framework/phone-list-tester.coffee'
+import ReactApp from '../framework/app/react-app'
+import SidebarTester from '../framework/tester/sidebar-tester.coffee'
+import PhoneListTester from '../framework/tester/phone-list-tester.coffee'
 
 describe('List Phones', ()=> {
 
