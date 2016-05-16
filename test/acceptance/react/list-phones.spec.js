@@ -1,7 +1,7 @@
 import '../../helpers/jsdom'
 import '../../helpers/chai'
 
-import rootComponent from '../../../app/scripts/react/rootComponent';
+import {newRootComponent} from '../../../app/scripts/react/rootComponent';
 import ReactApp from '../framework/react-app'
 import SidebarTester from '../framework/sidebar-tester.coffee'
 import PhoneListTester from '../framework/phone-list-tester.coffee'
@@ -9,10 +9,10 @@ import PhoneListTester from '../framework/phone-list-tester.coffee'
 describe('List Phones', ()=> {
 
   before(function () {
-    this.app = new ReactApp(rootComponent);
+    this.app = new ReactApp(newRootComponent());
 
     this.app.fetchMock.mock("api/static/phones/phones.json",
-      [{name: 'Nexus S', id: 'nexus-s'}, {name: 'Motorola DROID', id: 'motorola-droid'}]);
+      [{name: 'Nexus S', id: 'nexus-s'}, {name: 'Motorola DROID', id: 'motorola-droid',}]);
 
     this.app.start();
 

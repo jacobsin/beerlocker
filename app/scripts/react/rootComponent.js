@@ -8,10 +8,11 @@ import routes from './routes';
 
 import configureStore from './store/configureStore';
 
-const store = configureStore();
-
-export default (
-  <Provider store={store}>
-    <Router history={hashHistory} routes={routes} />
-  </Provider>
-);
+export function newRootComponent() {
+  return (
+    <Provider store={configureStore()}>
+      <Router history={hashHistory} routes={routes}/>
+    </Provider>
+  );
+}
+export default newRootComponent();
