@@ -11,7 +11,7 @@ export const getSearchText = state => state[NAME].searchText;
 export const getSortOrder = state => state[NAME].sortOrder;
 
 export const filterByText = (items, text) => {
-  return items.filter(phone => text.length == 0 || phone.name.indexOf(text) >= 0 || phone.snippet.indexOf(text) >= 0);
+  return items.filter(phone => text.length == 0 || phone.name.toLowerCase().indexOf(text.toLowerCase()) >= 0 || phone.snippet.toLowerCase().indexOf(text.toLowerCase()) >= 0);
 };
 
 export const sortBy = (items, sortOrder) => {

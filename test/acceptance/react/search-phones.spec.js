@@ -40,7 +40,7 @@ describe('Search Phones', ()=> {
   describe('search by name', ()=> {
 
     before(function () {
-      const $el = this.sidebar.search('Nex');
+      const $el = this.sidebar.search('nex');
       // this.app.Simulate.change($el[0]);
     });
 
