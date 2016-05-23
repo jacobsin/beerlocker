@@ -41,6 +41,7 @@ const getEntry = function (env) {
 
   entry.plain = ['./app/scripts/plain'];
   entry.angular = ['./app/scripts/angular'];
+  entry['angular-redux'] = ['./app/scripts/angular-redux'];
   entry.slingshot = ['./app/scripts/slingshot'];
   entry.react = ['./app/scripts/react'];
 
