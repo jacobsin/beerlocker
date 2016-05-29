@@ -43,7 +43,8 @@ export default function phonesAppState(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        detail: action.payload
+        detail: action.payload,
+        mainImageUrl: action.payload.images[0]
       };
 
     case `${t.FETCH}_REJECTED`:

@@ -2,10 +2,9 @@
 <html ng-app="phonecatApp">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>beerlocker angular</title>
+    <title>beerlocker ng-redux</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <script src="bower_components/modernizr/modernizr.js"></script>
 </head>
 <body class="with-nav angular">
@@ -18,7 +17,7 @@
 
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand angular" href="#">beerlocker angular</a>
+            <a class="navbar-brand angular" href="#">beerlocker ng-<span class="redux">redux</span></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
             <ul class="nav navbar-nav">
@@ -31,6 +30,7 @@
 </nav>
 
 <div ng-view></div>
+<div id="dev-tools"></div>
 
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -38,7 +38,7 @@
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
 
-<script src="scripts/angular-bundle.js"></script>
+<script src="scripts/ng-redux-bundle.js"></script>
 
 </body>
 </html>

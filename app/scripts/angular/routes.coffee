@@ -1,6 +1,4 @@
-phonecatRoutes = angular.module 'phonecatRoutes', ['ngRoute']
-
-phonecatRoutes.config ['$routeProvider',
+routes = ['$routeProvider',
   ($routeProvider) ->
     $routeProvider
     .when '/phones', {
@@ -15,3 +13,5 @@ phonecatRoutes.config ['$routeProvider',
       redirectTo: '/phones'
     }
 ]
+
+module.exports = routes

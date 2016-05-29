@@ -10,7 +10,7 @@ phoneDetailDirective.directive 'phoneDetail', ->
 
 <ul class="phone-thumbs">
     <li ng-repeat="img in phone.images">
-        <img ng-src="{{img}}" ng-click="setImage(img)">
+        <img ng-src="{{img}}" ng-click="selectImage(img)">
     </li>
 </ul>
 
@@ -116,13 +116,3 @@ phoneDetailDirective.directive 'phoneDetail', ->
     </li>
 </ul>
 '''
-
-phoneDetailDirective.controller 'PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone'
-  ($scope, $routeParams, Phone) ->
-    $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, (phone) ->
-      $scope.mainImageUrl = phone.images[0]
-    )
-
-    $scope.setImage = (imageUrl) ->
-      $scope.mainImageUrl = imageUrl
-]

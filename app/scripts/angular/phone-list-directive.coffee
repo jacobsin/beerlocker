@@ -31,9 +31,3 @@ phoneListDirective.directive 'phoneList', ->
     </div>
 </div>
 '''
-
-phoneListDirective.controller 'PhoneListCtrl', ['$scope', 'Phone',
-  ($scope, Phone) ->
-    $scope.phones = Phone.query()
-    $scope.orderProp = 'age'
-]
