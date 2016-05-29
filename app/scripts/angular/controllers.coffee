@@ -15,3 +15,5 @@ phonecatControllers.controller 'PhoneListCtrl', ['$scope', 'Phone',
     $scope.phones = Phone.query()
     $scope.orderProp = 'age'
 ]
+
+module.exports = phonecatControllers

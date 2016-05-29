@@ -1,6 +1,4 @@
-phoneDetailDirective = angular.module('phoneDetailDirective', [])
-
-phoneDetailDirective.directive 'phoneDetail', ->
+module.exports =  ->
   template: '''
 <img ng-src="{{mainImageUrl}}" class="phone">
 

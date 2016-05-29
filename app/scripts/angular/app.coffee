@@ -1,19 +1,11 @@
-require('./filters')
-require('./services')
-require('./controllers')
-require('./phone-detail-directive')
-require('./phone-list-directive')
-routes = require('./routes')
-
-phonecatApp = angular.module 'phonecatApp', [
-    'phoneDetailDirective',
-    'phoneListDirective',
-    'phonecatControllers',
-    'phonecatFilters',
-    'phonecatServices',
+app = angular.module 'phonecatApp', [
+    require('./directives').name,
+    require('./controllers').name,
+    require('./filters').name,
+    require('./services').name,
     'ngRoute'
 ]
 
-phonecatApp.config routes
+app.config require('./routes')
 
-module.exports = phonecatApp
+module.exports = app

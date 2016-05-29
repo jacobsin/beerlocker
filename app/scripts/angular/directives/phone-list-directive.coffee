@@ -1,6 +1,4 @@
-phoneListDirective = angular.module('phoneListDirective', [])
-
-phoneListDirective.directive 'phoneList', ->
+module.exports = ->
   template: '''
 <div class="container-fluid">
     <div class="row">

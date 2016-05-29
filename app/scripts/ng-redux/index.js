@@ -11,8 +11,7 @@ import '../../styles/angular.less';
 import '../angular/filters.coffee';
 import '../angular/services.coffee';
 import './controllers';
-import '../angular/phone-detail-directive.coffee';
-import '../angular/phone-list-directive.coffee';
+import directives from '../angular/directives/index.coffee';
 import routes from '../angular/routes.coffee';
 
 import {reducers} from '../react/rootReducer';
@@ -22,8 +21,7 @@ import ngRedux from 'ng-redux';
 import { default as DevTools, runDevTools} from './dev-tools';
 
 const app = angular.module('phonecatApp', [
-  'phoneDetailDirective',
-  'phoneListDirective',
+  directives.name,
   'phonecatControllers',
   'phonecatFilters',
   'phonecatServices',
