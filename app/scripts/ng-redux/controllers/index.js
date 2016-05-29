@@ -20,3 +20,5 @@ const phonecatControllers = angular.module('phonecatControllers', []);
 phonecatControllers.controller('PhoneDetailCtrl', PhoneDetailController);
 
 phonecatControllers.controller('PhoneListCtrl', PhoneListController);
+
+export default phonecatControllers;

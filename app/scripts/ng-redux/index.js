@@ -8,9 +8,9 @@
 
 import '../../styles/angular.less';
 
-import '../angular/filters.coffee';
-import '../angular/services.coffee';
-import './controllers';
+import filters from '../angular/filters.coffee';
+import services from '../angular/services.coffee';
+import controllers from './controllers';
 import directives from '../angular/directives/index.coffee';
 import routes from '../angular/routes.coffee';
 
@@ -22,9 +22,9 @@ import { default as DevTools, runDevTools} from './dev-tools';
 
 const app = angular.module('phonecatApp', [
   directives.name,
-  'phonecatControllers',
-  'phonecatFilters',
-  'phonecatServices',
+  controllers.name,
+  filters.name,
+  services.name,
   'ngRoute',
   ngRedux
 ]);
