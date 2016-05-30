@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="server mon" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="C:\Users\jacob\AppData\Roaming\npm\nodemon.cmd" path-to-js-file="server.js" working-dir="$PROJECT_DIR$">
+  <configuration default="false" name="server mon" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="$USER_HOME$/AppData/Roaming/npm/nodemon.cmd" path-to-js-file="server.js" working-dir="$PROJECT_DIR$">
     <RunnerSettings RunnerId="NodeJS.run" />
     <ConfigurationWrapper RunnerId="NodeJS.run" />
     <method />

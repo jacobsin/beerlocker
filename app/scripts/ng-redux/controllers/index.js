@@ -17,8 +17,8 @@ const phonecatControllers = angular.module('phonecatControllers', []);
 //   }
 // ]);
 
-phonecatControllers.controller('PhoneDetailCtrl', PhoneDetailController);
+phonecatControllers.controller('PhoneDetailReduxCtrl', PhoneDetailController);
 
-phonecatControllers.controller('PhoneListCtrl', PhoneListController);
+phonecatControllers.controller('PhoneListReduxCtrl', PhoneListController);
 
 export default phonecatControllers;
