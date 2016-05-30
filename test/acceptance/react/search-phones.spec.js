@@ -6,7 +6,7 @@ import ReactApp from '../framework/app/react-app';
 import SidebarTester from '../framework/tester/sidebar-tester.coffee';
 import PhoneListTester from '../framework/tester/phone-list-tester.coffee';
 
-describe('Search Phones', ()=> {
+describe('Search Phones - react', ()=> {
 
   before(function () {
     this.app = new ReactApp(newRootComponent());
