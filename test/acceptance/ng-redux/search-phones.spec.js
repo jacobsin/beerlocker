@@ -34,7 +34,8 @@ describe('Search Phones - ng-redux', ()=> {
   });
 
   it('should have phone names', function () {
-    this.phoneList.getNames().should.be.deep.equal(['Motorola DROID', 'Nexus S']);
+    this.app.$scope.$digest();
+    this.phoneList.getNames().should.be.deep.equal(['Nexus S', 'Motorola DROID']);
   });
 
   describe('search by name', ()=> {

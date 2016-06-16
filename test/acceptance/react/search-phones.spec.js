@@ -40,8 +40,7 @@ describe('Search Phones - react', ()=> {
   describe('search by name', ()=> {
 
     before(function () {
-      const $el = this.sidebar.search('nex');
-      // this.app.Simulate.change($el[0]);
+      this.sidebar.search('nex');
     });
 
     it('should have phone names', function () {

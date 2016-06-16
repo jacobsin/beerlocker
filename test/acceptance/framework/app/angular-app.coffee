@@ -6,8 +6,10 @@ class AngularApp
   constructor: (@module, @element, @attachTo = $('#mocha-fixture')) ->
     @$injector = angular.injector(['ng', 'ngMock', @module])
     @$httpBackend = @$injector.get('$httpBackend')
-    @$scope = @$injector.get('$rootScope').$new()
+    @$scope = @$injector.get('$rootScope')
     @$compile = @$injector.get('$compile')
+    @$location = @$injector.get('$location');
+
     register()
 
   start: ->
@@ -17,6 +19,8 @@ class AngularApp
 
     @$httpBackend.flush()
     @$scope.$digest()
+
+    debugger
 
   apply: ->
     @$scope.$apply()

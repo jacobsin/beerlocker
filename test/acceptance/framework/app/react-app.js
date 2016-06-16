@@ -8,10 +8,10 @@ import {triggerer, register} from './../dom-event/react-trigger';
 
 class ReactApp {
 
-  constructor(rootComponent, attachTo) {
+  constructor(rootComponent, attachTo = document.getElementById('mocha-fixture')) {
     this.fetchMock = fetchMock;
     this.rootComponent = rootComponent;
-    this.attachTo = attachTo || document.getElementById('mocha-fixture');
+    this.attachTo = attachTo;
     register();
   }
 
