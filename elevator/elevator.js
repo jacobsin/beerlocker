@@ -3,13 +3,15 @@
 import validateCall from './validate-call';
 
 class Elevator {
-  constructor() {
+  constructor({floors}) {
     this.calls = [];
     this.floor = 0;
+    this.floors = floors;
+    this.validateCall = validateCall(floors);
   }
 
   call(call) {
-    validateCall(call);
+    this.validateCall(call);
     this.calls.push(call);
   }
 }

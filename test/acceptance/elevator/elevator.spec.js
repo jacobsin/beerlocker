@@ -7,7 +7,7 @@ import Elevator from '../../../elevator/elevator';
 describe('elevator', ()=> {
 
   before(function () {
-    this.elevator = new Elevator();
+    this.elevator = new Elevator({floors: 10});
   });
 
   describe('initialize', ()=> {
