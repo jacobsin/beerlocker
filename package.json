@@ -17,8 +17,11 @@
     "build": "babel-node tools/build.js && npm run open:dist",
     "test": "npm run test:common -- --reporter progress",
     "test:ci": "npm run test:common -- --reporter mocha-teamcity-reporter",
-    "test:common": "cross-env NODE_ENV=test mocha --compilers html:./test/compilers/text.js,coffee:coffee-script/register,js:babel-core/register --recursive \"./test/**/*.spec.{js,coffee}\" --require ignore-styles",
-    "test:watch": "npm run test -- --watch"
+    "test:common": "npm run test:base -- --recursive \"./test/**/*.spec.{js,coffee}\"",
+    "test:base": "cross-env NODE_ENV=test mocha --compilers html:./test/compilers/text.js,coffee:coffee-script/register,js:babel-core/register --require ignore-styles",
+    "test:watch": "npm run test -- --watch",
+    "test:elev": "npm run test:base -- --recursive \"./test/acceptance/elevator/**/*.spec.{js,coffee}\" --reporter progress",
+    "test:elev:watch": "npm run test:elev -- --watch"
   },
   "license": "MIT",
   "dependencies": {
