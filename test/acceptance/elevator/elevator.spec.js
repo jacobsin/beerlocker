@@ -40,6 +40,14 @@ describe('elevator', ()=> {
       expect(this.elevator.calls[0]).to.have.property('direction', 'down');
     });
 
+    describe('invalid call', ()=> {
+
+      it('should fail call downward from ground floow', function () {
+        expect(()=>this.elevator.call({from: 0, direction: 'down'})).to.throw('cannot call downward from ground floor');
+      });
+
+    });
+
   });
 
 });

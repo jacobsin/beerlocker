@@ -1,5 +1,7 @@
 'use strict';
 
+import validateCall from './validate-call';
+
 class Elevator {
   constructor() {
     this.calls = [];
@@ -7,6 +9,7 @@ class Elevator {
   }
 
   call(call) {
+    validateCall(call);
     this.calls.push(call);
   }
 }
