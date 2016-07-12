@@ -18,7 +18,6 @@ describe('Search Phones - ng-redux', ()=> {
       ]);
 
     this.app.start();
-
     window.location = '/phones';
 
     this.sidebar = new SidebarTester();

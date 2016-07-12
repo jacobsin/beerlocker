@@ -1,15 +1,15 @@
 import fetchMock from 'fetch-mock';
 import 'isomorphic-fetch';
 
-import {triggerer, register} from './../dom-event/angular-trigger';
+import {register, triggerer} from './../dom-event/angular-trigger';
 
 class NgReduxApp {
 
-  constructor(module, element, attachTo) {
+  constructor(module, element, attachTo = $('#mocha-fixture')) {
     this.fetchMock = fetchMock;
     this.module = module;
     this.element = element;
-    this.attachTo = attachTo || $('mocha-fixture');
+    this.attachTo = attachTo;
 
     this.$injector = angular.injector(['ng', 'ngMock', this.module]);
     this.$httpBackend = this.$injector.get('$httpBackend');
