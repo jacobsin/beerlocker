@@ -42,8 +42,14 @@ describe('elevator', ()=> {
 
     describe('invalid call', ()=> {
 
-      it('should fail call downward from ground floow', function () {
-        expect(()=>this.elevator.call({from: 0, direction: 'down'})).to.throw('cannot call downward from ground floor');
+      it('should fail call downward from ground floor', function () {
+        expect(()=>this.elevator.call({from: 0, direction: 'down'}))
+          .to.throw('cannot call downward from ground floor');
+      });
+
+      it('should fail call upward from top floor', function () {
+        expect(()=>this.elevator.call({from: 10, direction: 'up'}))
+          .to.throw('cannot call upward from floor 10');
       });
 
     });
