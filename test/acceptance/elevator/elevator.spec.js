@@ -16,6 +16,10 @@ describe('elevator', ()=> {
       expect(this.elevator.calls).to.have.length(0);
     });
 
+    it('should have no requests', function () {
+      expect(this.elevator.requests).to.have.length(0);
+    });
+
     it('should be on ground floor', function () {
       expect(this.elevator.floor).to.be.equal(0);
     });
@@ -32,7 +36,7 @@ describe('elevator', ()=> {
       expect(this.elevator.calls).to.have.length(1);
     });
 
-    it('should know which floor the call was originated from', function () {
+    it('should know which floor the call is originated from', function () {
       expect(this.elevator.calls[0]).to.have.property('from', 1);
     });
 
@@ -52,6 +56,22 @@ describe('elevator', ()=> {
           .to.throw('cannot call upward from floor 10');
       });
 
+    });
+
+  });
+
+  describe('request', ()=> {
+
+    before(function () {
+      this.elevator.request({to: 3});
+    });
+
+    it('should add to requests', function () {
+      expect(this.elevator.requests).to.have.length(1);
+    });
+
+    it('should know which floor the request is destinated to', function () {
+      expect(this.elevator.requests[0]).have.property('to', 3);
     });
 
   });
