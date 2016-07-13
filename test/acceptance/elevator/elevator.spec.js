@@ -76,20 +76,22 @@ describe('elevator', ()=> {
 
     describe('invalid request', ()=> {
 
+      before(function () {
+        this.elevator.floor = 3;
+      });
+
       it('should fail request to current floor', function () {
-        expect(()=>this.elevator.request({to: 0}))
+        expect(()=>this.elevator.request({to: 3}))
           .to.throw('cannot request current floor');
       });
 
       it('should fail request to floor below current when going up', function () {
-        this.elevator.floor = 3;
         this.elevator.direction = 'up';
         expect(()=>this.elevator.request({to: 2}))
           .to.throw('cannot request floor below current when going up');
       });
 
       it('should fail request to floor above current when going down', function () {
-        this.elevator.floor = 3;
         this.elevator.direction = 'down';
         expect(()=>this.elevator.request({to: 4}))
           .to.throw('cannot request floor above current when going down');
@@ -98,7 +100,6 @@ describe('elevator', ()=> {
     });
 
   });
-
 
 
 });
