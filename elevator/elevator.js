@@ -1,6 +1,7 @@
 'use strict';
 
 import validateCall from './validate-call';
+import validateRequest from './validate-request';
 
 class Elevator {
 
@@ -23,16 +24,5 @@ class Elevator {
     this.requests.push(request);
   }
 }
-
-const validateRequest = (elevator)=> {
-  return (request)=> {
-    if (request.to == elevator.floor) {
-      throw 'cannot request current floor';
-    }
-    if (request.to < elevator.floor && elevator.direction == 'up') {
-      throw 'cannot request floor below current when going up'
-    }
-  };
-};
 
 export default Elevator;

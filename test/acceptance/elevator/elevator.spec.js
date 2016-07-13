@@ -88,6 +88,12 @@ describe('elevator', ()=> {
           .to.throw('cannot request floor below current when going up');
       });
 
+      it('should fail request to floor above current when going down', function () {
+        this.elevator.floor = 3;
+        this.elevator.direction = 'down';
+        expect(()=>this.elevator.request({to: 4}))
+          .to.throw('cannot request floor above current when going down');
+      });
 
     });
 
