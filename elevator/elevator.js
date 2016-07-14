@@ -23,6 +23,23 @@ class Elevator {
     this.validateRequest(request);
     this.requests.push(request);
   }
+
+  getStateString() {
+    const rows = [];
+
+    const direction = '-';
+    rows.push(`  | ${direction}`);
+
+    for (let i = this.floors; i >= 0; i--) {
+      let floorState = ' ';
+      if (i == this.floor) {
+        floorState = 'I';
+      }
+      rows.push(`${i} | ${floorState}`);
+    }
+
+    return rows.join('\n');
+  }
 }
 
 export default Elevator;

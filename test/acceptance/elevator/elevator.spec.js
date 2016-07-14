@@ -7,7 +7,7 @@ import Elevator from '../../../elevator/elevator';
 describe('elevator', ()=> {
 
   before(function () {
-    this.elevator = new Elevator({floors: 10});
+    this.elevator = new Elevator({floors: 5});
   });
 
   describe('initialize', ()=> {
@@ -52,8 +52,8 @@ describe('elevator', ()=> {
       });
 
       it('should fail call upward from top floor', function () {
-        expect(()=>this.elevator.call({from: 10, direction: 'up'}))
-          .to.throw('cannot call upward from floor 10');
+        expect(()=>this.elevator.call({from: 5, direction: 'up'}))
+          .to.throw('cannot call upward from floor 5');
       });
 
     });
@@ -80,6 +80,10 @@ describe('elevator', ()=> {
         this.elevator.floor = 3;
       });
 
+      after(function () {
+        this.elevator.floor = 0;
+      });
+
       it('should fail request to current floor', function () {
         expect(()=>this.elevator.request({to: 3}))
           .to.throw('cannot request current floor');
@@ -101,5 +105,19 @@ describe('elevator', ()=> {
 
   });
 
+  describe('getStateString', ()=> {
+
+    it('should give pictoral string of current state', function () {
+      expect(this.elevator.getStateString()).to.equal(
+        '  | -\n'+
+        '5 |  \n'+
+        '4 |  \n'+
+        '3 |  \n'+
+        '2 |  \n'+
+        '1 |  \n'+
+        '0 | I');
+    });
+
+  });
 
 });
