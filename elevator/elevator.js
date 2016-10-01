@@ -8,6 +8,7 @@ class Elevator {
   constructor({floors}) {
     this.calls = [];
     this.requests = [];
+    this.moves = [];
     this.floor = 0;
     this.floors = floors;
     this.validateCall = validateCall(floors);
@@ -17,6 +18,7 @@ class Elevator {
   call(call) {
     this.validateCall(call);
     this.calls.push(call);
+    this.moves = this.moves.concat(toMoves({from: this.floor, to: call.from}))
   }
 
   request(request) {
@@ -27,7 +29,9 @@ class Elevator {
   getStateString() {
     const rows = [];
 
-    const direction = '-';
+    let direction = '-';
+    if (this.direction == 'up') direction = '^';
+    if (this.direction == 'down') direction = 'v';
     rows.push(`  | ${direction}`);
 
     for (let i = this.floors; i >= 0; i--) {
@@ -40,6 +44,26 @@ class Elevator {
 
     return rows.join('\n');
   }
+
+  move() {
+    const next = this.moves.pop();
+    switch (next) {
+      case 'up':
+        this.direction = 'up';
+        this.floor++;
+        break;
+    }
+    if (this.moves.length == 0) this.direction = undefined;
+  }
+
 }
+
+const toMoves = ({from, to})=> {
+  const moves = [];
+  for (let u = from; u < to; u++) {
+    moves.push('up');
+  }
+  return moves;
+};
 
 export default Elevator;

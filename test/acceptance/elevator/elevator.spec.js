@@ -80,10 +80,6 @@ describe('elevator', ()=> {
         this.elevator.floor = 3;
       });
 
-      after(function () {
-        this.elevator.floor = 0;
-      });
-
       it('should fail request to current floor', function () {
         expect(()=>this.elevator.request({to: 3}))
           .to.throw('cannot request current floor');
@@ -107,6 +103,10 @@ describe('elevator', ()=> {
 
   describe('getStateString', ()=> {
 
+    before(function () {
+      this.elevator = new Elevator({floors: 5});
+    })
+
     it('should give pictoral string of current state', function () {
       expect(this.elevator.getStateString()).to.equal(
         '  | -\n'+
@@ -116,6 +116,101 @@ describe('elevator', ()=> {
         '2 |  \n'+
         '1 |  \n'+
         '0 | I');
+    });
+
+  });
+
+  describe('move', ()=> {
+
+    before(function () {
+      this.elevator = new Elevator({floors: 5});
+      this.elevator.move();
+    });
+
+    it('should stay on same floor', function () {
+      expect(this.elevator.floor).to.equal(0);
+    });
+
+    it('should give correct state', function () {
+      expect(this.elevator.getStateString()).to.equal(
+        '  | -\n'+
+        '5 |  \n'+
+        '4 |  \n'+
+        '3 |  \n'+
+        '2 |  \n'+
+        '1 |  \n'+
+        '0 | I');
+    });
+
+    describe('when called from floor above', ()=> {
+
+      before(function () {
+        this.elevator.call({from: 4, direction: 'down'});
+        this.elevator.move();
+      });
+
+      it('should move up', function () {
+        expect(this.elevator.floor).to.equal(1);
+      });
+
+      it('should give correct state', function () {
+        expect(this.elevator.getStateString()).to.equal(
+          '  | ^\n'+
+          '5 |  \n'+
+          '4 |  \n'+
+          '3 |  \n'+
+          '2 |  \n'+
+          '1 | I\n'+
+          '0 |  ');
+      });
+
+      describe('when continue to move', ()=> {
+
+        before(function () {
+          this.elevator.move();
+          this.elevator.move();
+        });
+
+        it('should move toward calling floor', function () {
+          expect(this.elevator.floor).to.equal(3);
+        });
+
+        it('should give correct state', function () {
+          expect(this.elevator.getStateString()).to.equal(
+            '  | ^\n'+
+            '5 |  \n'+
+            '4 |  \n'+
+            '3 | I\n'+
+            '2 |  \n'+
+            '1 |  \n'+
+            '0 |  ');
+        });
+
+        describe('when move to calling floor', ()=> {
+
+          before(function () {
+            this.elevator.move();
+          });
+
+          it('should be on calling floor', function () {
+            expect(this.elevator.floor).to.equal(4);
+          });
+
+          it('should give correct state', function () {
+            expect(this.elevator.getStateString()).to.equal(
+              '  | -\n'+
+              '5 |  \n'+
+              '4 | I\n'+
+              '3 |  \n'+
+              '2 |  \n'+
+              '1 |  \n'+
+              '0 |  ');
+          });
+
+        });
+
+      });
+
     });
 
   });
