@@ -27,6 +27,8 @@
   "dependencies": {
     "connect-history-api-fallback": "1.1.0",
     "core-js": "2.4.0",
+    "express": "4.14.0",
+    "mongoose": "4.6.2",
     "ng-redux": "3.3.4-beta.0",
     "object-assign": "4.0.1",
     "react": "0.14.7",
